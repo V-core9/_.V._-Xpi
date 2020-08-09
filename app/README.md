@@ -16,6 +16,7 @@ npm install -g sass</br>
 sass --watch src/scss:src/css</br>
 
 # Run npm installs for gulp to work
+npm install sweetalert2</br>
 npm install gulp</br>
 npm install gulp-concat</br>
 npm install gulp-minify-css</br>

@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.0.3/dist/css/bootstrap-colorpicker.min.css" crossorigin="anonymous" />
 		<link rel="stylesheet" type="text/css" href="custom.css" />
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="assets/3rd_party/notifications/main.css" crossorigin="anonymous" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 		<script>
 			var frontConfig = {
 				apiUrl : "http://localhost:8080/dev/0Xript/api/"
@@ -58,10 +58,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.0.3/dist/js/bootstrap-colorpicker.min.js"></script>
-<script src="assets/3rd_party/notifications/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
  
 <script>
 var debuggingMode = false;
+
+toastr.options = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": true,
+					"progressBar": true,
+					"positionClass": "toast-bottom-right",
+					"preventDuplicates": false,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1500",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				}
 // jQuery codes
 $(document).ready(function(){
 	
@@ -111,33 +129,38 @@ $(document).ready(function(){
     $(document).on('click', '#sign_up', function(){
 		show_register_form();
 	});
- 
-    // trigger when registration form is submitted
+
+	// trigger when registration form is submitted
 	$(document).on('submit', '#sign_up_form', function(){
-	 
-	    // get form data
-	    var sign_up_form=$(this);
-	    var form_data=JSON.stringify(sign_up_form.serializeObject());
-	 
-	    // submit form data to api
-	    $.ajax({
-	        url:  frontConfig.apiUrl + "users/create_user.php",
-	        type : "POST",
-	        contentType : 'application/json',
-	        data : form_data,
-	        success : function(result) {
-	            // if response is a success, tell the user it was a successful sign up & empty the input boxes
-	            $('#response').html("<div class='alert alert-success'>Successful sign up. Please login.</div>");
-	            sign_up_form.find('input').val('');
-	        },
-	        error: function(xhr, resp, text){
-	            // on error, tell the user sign up failed
-	            $('#response').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
-	        }
-	    });
-	 
-	    return false;
+		
+		// get form data
+		var sign_up_form=$(this);
+		var form_data=JSON.stringify(sign_up_form.serializeObject());
+	
+		// submit form data to api
+		$.ajax({
+			url:  frontConfig.apiUrl + "users/create_user.php",
+			type : "POST",
+			contentType : 'application/json',
+			data : form_data,
+			success : function(result) {
+				// if response is a success, tell the user it was a successful sign up & empty the input boxes
+				//$('#response').html("<div class='alert alert-success'>Successful sign up. Please login.</div>");
+				
+				toastr.success("Register Successful", "Users Module - Register");
+					
+				sign_up_form.find('input').val('');
+			},
+			error: function(xhr, resp, text){
+				// on error, tell the user sign up failed
+				//$('#response').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
+								
+				toastr.error("x", "Users Module - Register");
+			}
+		});
+		return false;
 	});
+	
 	$(document).on('click', '.nav-item.nav-link', function(){
 		$('.nav-item.nav-link').removeClass('current_page');
 		$(this).addClass('current_page');
@@ -168,29 +191,20 @@ $(document).ready(function(){
 		        // show dashboard page & tell the user it was a successful login
 		        //showDashboardPage();
 				$('#dashboard').click();
-				$('#response').html("<div class='alert alert-success'>Successful login.</div>");
+				//$('#response').html("<div class='alert alert-success'>Successful login.</div>");
 				
 				addCSS("body{ color: " + result.data.main_color + "; }");
-		        setCookie("main_color", result.data.main_color , 1);
+				setCookie("main_color", result.data.main_color , 1);
 				
-				var notification5 = {
-					id: 5555,
-					theme: "default_dark",
-					type: "information",
-					animationIn: "fadeIn",
-					animationOut: "fadeOutSlideRight",
-					iconImg: "assets/3rd_party/notifications/img/duck.gif",
-					closeButton: true,
-					title: "SOMETHING HAPPENED!!",
-					message: "Your computer has been hacked...Please follow the link for more information about your data. Click <a href='#'>here</a>.",
-				}
-				trowNewNotification(notification5);
 				
+				toastr.success("Login Successful", "Users Module - Login");
+
 				showLoggedInMenu();
 		    },
 		    error: function(xhr, resp, text){
 			    // on error, tell the user login has failed & empty the input boxes
-			    $('#response').html("<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>");
+			    //$('#response').html("<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>");
+				toastr.error("Login Failed. Email or password is incorrect.", "Users Module - Login");
 			    login_form.find('input').val('');
 			}
 		});
@@ -205,7 +219,7 @@ $(document).ready(function(){
 	});
 	 
 	// show dashboard page
-	$(document).on('click', '#homepage, #home_logo', function(){
+	$(document).on('click', '#homepage, #home_logo, .open_homepage', function(){
 	    open_static_page('templates/static_pages/home_page/index.php');
 	    clearResponse();
 	});
@@ -248,7 +262,8 @@ $(document).ready(function(){
 		    success : function(result) {
 		 
 		        // tell the user account was updated
-		        $('#response').html("<div class='alert alert-success'>Account was updated.</div>");
+		        //$('#response').html("<div class='alert alert-success'>Account was updated.</div>");
+				toastr.success("Account details were updated successfulyl", "Users Module - Profile");
 		 
 		        // store new jwt to coookie
 		        setCookie("jwt", result.jwt, 1);
@@ -259,12 +274,14 @@ $(document).ready(function(){
 		    // show error message to user
 			error: function(xhr, resp, text){
 			    if(xhr.responseJSON.message=="Unable to update user."){
-			        $('#response').html("<div class='alert alert-danger'>Unable to update account.</div>");
+			        //$('#response').html("<div class='alert alert-danger'>Unable to update account.</div>");
+					toastr.warning("Unable to update account details, please try again in a moment.", "Users Module - Profile");
 			    }
 			 
 			    else if(xhr.responseJSON.message=="Access denied."){
 			        showLoginPage();
-			        $('#response').html("<div class='alert alert-success'>Access denied. Please login</div>");
+			        //$('#response').html("<div class='alert alert-success'>Access denied. Please login</div>");
+					toastr.error("Access denied. Please login to change settings.", "Users Module - Profile");
 			    }
 			}
 		});
@@ -275,8 +292,9 @@ $(document).ready(function(){
 	// logout the user
 	$(document).on('click', '#logout', function(){
 	    showLoginPage();
-		$('#response').html("<div class='alert alert-info'>You are logged out.</div>");
+		//$('#response').html("<div class='alert alert-info'>You are logged out.</div>");
 		
+		toastr.success("Logout Successful", "Users Module - Login");
 	});
 
 	// show login page
@@ -318,7 +336,8 @@ $(document).ready(function(){
 	    // show login page on error
 		.fail(function(result){
 		    showLoginPage();
-		    $('#response').html("<div class='alert alert-danger'>Please login to access the dashboard page.</div>");
+		    //$('#response').html("<div class='alert alert-danger'>Please login to access the dashboard page.</div>");
+			toastr.success("Please login to access the dashboard page", "Pages: Dashboard");
 		});
 	}
 	 
@@ -371,7 +390,8 @@ $(document).ready(function(){
 		    // on error/fail, tell the user he needs to login to show the account page
 			.fail(function(result){
 			    showLoginPage();
-			    $('#response').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
+			    //$('#response').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
+				toastr.error("Please login to access the account page.", "Users Module - Profile");
 			});
 	}
  
@@ -518,7 +538,8 @@ function showUpdateAccountForm(){
 		    // on error/fail, tell the user he needs to login to show the account page
 			.fail(function(result){
 			    showLoginPage();
-			    $('#response').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
+			    //$('#response').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
+				toastr.error("Please login to access the account page.", "Users Module - Profile");
 			});
 	}
 
@@ -613,36 +634,8 @@ function show_register_form(){
 	
 	var jwt = getCookie('jwt');
 	if (jwt == ""){
-		var html = `
-			<div class="container">
-			<h2>Sign Up</h2>
-			<form id='sign_up_form'>
-				<div class="form-group">
-					<label for="firstname">Firstname</label>
-					<input type="text" class="form-control" name="firstname" id="firstname" required autocomplete="off" />
-				</div>
-
-				<div class="form-group">
-					<label for="lastname">Lastname</label>
-					<input type="text" class="form-control" name="lastname" id="lastname" required autocomplete="off" />
-				</div>
-
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" name="email" id="email" required autocomplete="off" />
-				</div>
-
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" id="password" required autocomplete="off" />
-				</div>
-
-				<button type='submit' class='btn btn-primary'>Sign Up</button>
-			</form>
-			</div>
-			`;
 		clearResponse();
-		$('#content').html(html);
+		$('#content').load("templates/users/register.temp.html");
 	} else {
 		showUpdateAccountForm();
 	}
