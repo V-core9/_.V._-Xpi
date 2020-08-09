@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="assets/3rd_party/notifications/main.css" crossorigin="anonymous" />
 		<script>
 			var frontConfig = {
-				apiUrl : "http://192.168.1.50:8080/dev/LoginSystemRework/[4.0.1]/api/"
+				apiUrl : "http://localhost:8080/dev/0Xript/api/",
 			}
 		</script>
     </head>
