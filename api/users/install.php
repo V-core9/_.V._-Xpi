@@ -11,19 +11,21 @@ function installUsers(){
     }
 
     // sql to create table
-    $sql = "CREATE TABLE ".DB_PREFIX."users (
+    $sql = "CREATE TABLE users (
 		id int NOT NULL AUTO_INCREMENT, 
+        username varchar(255) NOT NULL UNIQUE,
 		firstname varchar(255) NOT NULL,
 		lastname varchar(255) NOT NULL, 
-		email varchar(255) NOT NULL, 
+		email varchar(255) NOT NULL UNIQUE, 
 		password varchar(255) NOT NULL, 
+        main_color varchar(255) NULL,
 		created datetime  DEFAULT CURRENT_TIMESTAMP NOT NULL, 
 		modified timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
 		PRIMARY KEY (id)
 	)";
 
     if ($conn->query($sql) === TRUE) {
-        return "<div class='install-message success'>Table ".DB_PREFIX."users created successfully</div>";
+        return "<div class='install-message success'>Table users created successfully</div>";
     } else {
         return "<div class='install-message error'>Error creating table: " . $conn->error . "</div>";
     }

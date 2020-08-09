@@ -1,8 +1,25 @@
 <?php
-define( "OMEGA_LOC" , "Snksaoo1239!-5XX");
+// used to get mysql database connection
+class Database{
 
-define("DB_NAME","[>DB_NAME<]");
-define("DB_USER","[>DB_USER<]");
-define("DB_PASS","[>DB_PASS<]");
-define("DB_HOST","[>DB_HOST<]");
-define("DB_PREFIX","[>DB_PREFIX<]");
+	// specify your own database credentials
+	private $host = "[>DB_HOST<]";
+	private $db_name = "[>DB_NAME<]";
+	private $username = "[>DB_USER<]";
+	private $password = "[>DB_PASS<]";
+	public $con;
+
+	// get the database connection
+	public function getConnection(){
+
+		$this->conn = null;
+
+		try{
+			$this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+		}catch(PDOException $excception){
+			echo "Connection error: " . $exception->getMessage();
+		}
+
+		return $this->conn;
+	}
+}

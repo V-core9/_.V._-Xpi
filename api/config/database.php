@@ -4,9 +4,9 @@ class Database{
 
 	// specify your own database credentials
 	private $host = "localhost";
-	private $db_name = "login_testing_jwt";
-	private $username = "login_testing_jwt";
-	private $password = "login_testing_jwt";
+	private $db_name = "omega_install_demo1";
+	private $username = "omega_install_demo1";
+	private $password = "omega_install_demo1";
 	public $con;
 
 	// get the database connection

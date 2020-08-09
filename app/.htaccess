@@ -1,4 +1,5 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(xml|txt|svg|png|jpg|css|js)$
 RewriteRule ^.*$ /dev/0Xript/app/index.php [L,QSA]

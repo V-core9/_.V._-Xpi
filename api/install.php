@@ -18,9 +18,8 @@ define("OMEGA_INSTALL_DEBUG", true);
 
 <?php
 // define variables and set to empty values
-$nameErr = $usernameErr = $passwordErr = $hostErr = $prefixErr = "";
+$nameErr = $usernameErr = $passwordErr = $hostErr = "";
 $name = $username = $password = $host = "";
-$prefix = "omega_";
 
 
 
@@ -59,11 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $myFileLink = fopen($configSampleFile, 'r');
     $configSample = fread($myFileLink, filesize($configSampleFile));
     fclose($myFileLink);
-    $configSample = replaceValues($configSample, $name, $username, $password, $host, $_POST["prefix"]);
-    $configFile = fopen("config.php", "w") or die("Unable to open file!");
+    $configSample = replaceValues($configSample, $name, $username, $password, $host);
+    $configFile = fopen("config/database.php", "w") or die("Unable to open file!");
     fwrite($configFile, $configSample);
     fclose($configFile);
-    echo "<div class='install-message success'>Create config.php file</div>";
+    echo "<div class='install-message success'>Create config/database.php file</div>";
   }else{
     echo "<div class='install-message error'>Missing config-sample.php file</div>";
   }
@@ -158,10 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       Host: <div><input type="text" name="host" value="<?php echo $host;?>">
       <span class="error">* <?php echo $hostErr;?></span></div>
     </div>
-    <div class="input-sec">  
-      Prefix: <div><input type="text" name="prefix" value="<?php echo $prefix;?>">
-      <span class="error">* <?php echo $prefixErr;?></span></div>
-    </div>
     <input type="submit" name="submit" value="Submit">  
   </form>
 </div>
@@ -181,12 +176,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <?php 
 /////////////helper functions
 
-function replaceValues($configSample, $name, $username, $password, $host, $prefix = 'omega_') {
+function replaceValues($configSample, $name, $username, $password, $host) {
   $configSample = str_replace("[>DB_NAME<]",$name, $configSample);
   $configSample = str_replace("[>DB_USER<]",$username, $configSample);
   $configSample = str_replace("[>DB_PASS<]",$password, $configSample);
   $configSample = str_replace("[>DB_HOST<]",$host, $configSample);
-  $configSample = str_replace("[>DB_PREFIX<]",$prefix, $configSample);
   return $configSample;
 }
 
@@ -265,7 +259,6 @@ function replaceValues($configSample, $name, $username, $password, $host, $prefi
     border-bottom: 2px solid green;
     font-size: 18px;
     font-weight: 400; 
-    color: white;
   }
 
   .input-sec .error {
