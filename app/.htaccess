@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ /dev/LoginSystemRework/[4.0.1]/app/index.php [L,QSA]
+RewriteRule ^.*$ /dev/0Xript/app/index.php [L,QSA]

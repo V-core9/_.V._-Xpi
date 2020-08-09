@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="assets/3rd_party/notifications/main.css" crossorigin="anonymous" />
 		<script>
 			var frontConfig = {
-				apiUrl : "http://localhost:8080/dev/0Xript/api/",
+				apiUrl : "http://localhost:8080/dev/0Xript/api/"
 			}
 		</script>
     </head>
