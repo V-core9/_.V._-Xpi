@@ -1,6 +1,36 @@
-# REST API Auth JWT Example
+# APP
 
-Made by following the tutorial: https://www.codeofaninja.com/2018/09/rest-api-authentication-example-php-jwt-tutorial.html
+## usage
+
+
+
+
+
+
+## *INSTALLING FOR DEVELOPMET*
+
+# Install npm SASS
+npm install -g sass</br>
+
+# Run command to update CSS by editing SCSS
+sass --watch src/scss:src/css</br>
+
+# Run npm installs for gulp to work
+npm install gulp</br>
+npm install gulp-concat</br>
+npm install gulp-minify-css</br>
+npm install gulp-autoprefixer</br>
+npm install gulp-rename</br>
+npm install gulp-sass</br>
+
+# So you can run "gulp" command in root and have .min.css file(s) exported
+gulp min-css-export-single-file</br>
+gulp min-css-export-all</br>
+gulp sass-export<br>
+gulp watch<br>
+
+
+
 
 **First create users in the "api_db" database**
 
