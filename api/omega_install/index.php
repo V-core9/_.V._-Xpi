@@ -59,10 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $configSample = fread($myFileLink, filesize($configSampleFile));
     fclose($myFileLink);
     $configSample = replaceValues($configSample, $name, $username, $password, $host);
-    $configFile = fopen("config/database.php", "w") or die("Unable to open file!");
+    $configFile = fopen("../included_files/config/database.php", "w") or die("Unable to open file!");
     fwrite($configFile, $configSample);
     fclose($configFile);
-    echo "<div class='install-message success'>Create config/database.php file</div>";
+    echo "<div class='install-message success'>Create ../included_files/config/database.php file</div>";
   }else{
     echo "<div class='install-message error'>Missing config-sample.php file</div>";
   }
@@ -87,28 +87,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-  if(file_exists('config.php')){
-    include_once 'config.php';
+  if(file_exists('../included_files/config/database.php')){
+    include_once '../included_files/config/database.php';
+    echo "<div class='install-message success'>Found & Loaded config/database.php </div>";
   } else {
-    echo "Missing Config.php";
-  }
-  $modules = [ 'users' ];
-  if (file_exists('users/install.php')){
-    include_once 'users/install.php';
-    echo "<h2 class='sectionTitle'>Users table create:</h2>". installUsers();
-    if (defined("OMEGA_INSTALL_DEBUG") == true){
-      rename('users/install.php', 'users/.install.php');
-      rename('users/.install.php', 'users/install.php');
-      echo "<div class='install-message success'>users/install.php deleted</div>";
-    } else {
-      unlink('users/install.php');
-      echo "<div class='install-message success'>users/install.php deleted</div>";
-    }
-  } else {
-    echo "Missing <strong>users/install.php</strong\>module install file!";
-  }
-  //close section for results
+    echo "<div class='install-message error'>Missing config/database.php</div>";
+  };
 
+  echo '<h2 class="sectionTitle">Modules installation</h2>';
+  $modules = [ 'users', ];
+
+  foreach ($modules as $moduleName){
+    echo "<h3 class='sectionTitle'>Module [ ".$moduleName." ] install status:</h3>";
+    if (file_exists('../'.$moduleName.'/install.php')){
+      echo "<div class='install-message success'>Found ../".$moduleName."/install.php</div>";
+      $helperVar = include_once '../'.$moduleName.'/install.php';
+      if (isset(json_decode($helperVar)->errorData)){
+        echo "<div class='install-message error'>".$helperVar."</div>";
+      } else {
+        echo "<div class='install-message success'>".$moduleName." installed successfully.</div>";
+      }
+      if (defined("OMEGA_INSTALL_DEBUG") == true){
+        rename('../'.$moduleName.'/install.php', '../'.$moduleName.'/.install.php');
+        rename('../'.$moduleName.'/.install.php', '../'.$moduleName.'/install.php');
+        echo "<div class='install-message success'>../".$moduleName."/install.php deleted</div>";
+      } else {
+        unlink('../'.$moduleName.'/install.php');
+        echo "<div class='install-message success'>../".$moduleName."/install.php deleted</div>";
+      }
+    } else {
+      echo "<div class='install-message error'>Missing <strong>../".$moduleName."/install.php</strong>module install file!</div>";
+    }
+  }
+  
   
   if (defined("OMEGA_INSTALL_DEBUG") == true) {
     echo "<h2>Database config results:</h2> ";

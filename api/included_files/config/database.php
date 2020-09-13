@@ -4,9 +4,9 @@ class Database{
 
 	// specify your own database credentials
 	private $host = "localhost";
-	private $db_name = "omega_install_demo1";
-	private $username = "omega_install_demo1";
-	private $password = "omega_install_demo1";
+	private $db_name = "xomega_1";
+	private $username = "xomega_1";
+	private $password = "xomega_1";
 	public $con;
 
 	// get the database connection

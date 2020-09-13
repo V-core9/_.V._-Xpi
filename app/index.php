@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 		<script>
 			var frontConfig = {
-				apiUrl : "http://localhost:8080/dev/0Xript/api/"
+				apiUrl : "http://localhost:/dev/XOmega/api/"
 			}
 		</script>
     </head>
