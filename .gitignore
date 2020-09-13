@@ -1,2 +1,2 @@
 /app/node_modules/*
-/api/vendor/*
+/api/included_files/vendor/*
