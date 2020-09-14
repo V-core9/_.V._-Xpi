@@ -43,14 +43,14 @@ if($jwt){
         
         if ($decoded->data->user_type  == 'admin'){
 
-            if ($user->get_admin_all_users()){
+            if ($user->get_account_settins()){
                 // set response code
                 http_response_code(200);
                 
                 // show user details
                 echo json_encode(array(
                     "message" => "Access granted.",
-                    "data" => $user->user_num
+                    "data" => $user
                 ));
             } else {
                 // set response code

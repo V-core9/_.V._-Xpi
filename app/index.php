@@ -344,7 +344,6 @@ $(document).ready(function(){
 	    $.post( frontConfig.apiUrl + "users/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
 	 
 			$("#content").load("templates/dashboard/index.temp.html");
-			showLoggedInMenu();
 	    })
 	 
 	    // show login page on error
@@ -360,30 +359,16 @@ $(document).ready(function(){
 	 
 	    // validate jwt to verify access
 	    var jwt = getCookie('jwt');
-	    $.post( frontConfig.apiUrl + "admin/users/all.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+	    $.post( frontConfig.apiUrl + "admin/dashboard/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
 			
 			$("#content").load("templates/admin_dashboard/index.temp.html");
-			showadminLoggedInMenu();
 	    })
 	 
 	    // show login page on error
 		.fail(function(result){
 		    showLoginPage();
-				toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
+			toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
 		});
-	}
-	 
-	// if the user is logged in
-	function showLoggedInMenu(){
-	    // hide login and sign up from navbar & show logout button
-	    $("#login, #sign_up").hide();
-	    $("#logout, #update_account, #dashboard").show();
-	}
-	 
-	// if the user admin logged in
-	function showAdminLoggedInMenu(){
-	    $("#dashboard-admin").show();
-		showLoggedInMenu();
 	}
 	 
 	function showUpdateAccountFormOLD(){
@@ -678,6 +663,19 @@ function show_register_form(){
 		showUpdateAccountForm();
 	}
 };
+	 
+// if the user is logged in
+function showLoggedInMenu(){
+	// hide login and sign up from navbar & show logout button
+	$("#login, #sign_up").hide();
+	$("#logout, #update_account, #dashboard").show();
+}
+
+// if the user admin logged in
+function showAdminLoggedInMenu(){
+	$("#dashboard-admin").show();
+	showLoggedInMenu();
+}
  
 // remove any prompt messages
 function clearResponse(){

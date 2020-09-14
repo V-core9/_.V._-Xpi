@@ -198,6 +198,34 @@ class User{
         }     
     }
 
+    // get user row/settings
+    public function get_admin_all_users(){
+
+        $query = "SELECT * FROM ". $this->table_name ;
+        
+        // prepare the query
+        $stmt = $this->conn->prepare( $query );
+
+        // execute the query
+        $stmt->execute();
+
+        // get number of rows
+        $num = $stmt->rowCount();
+
+        // if account settings exists, assign values to object properties for easy access and use for php sessions
+        if($num>0){
+     
+            $this->user_num     = $num;
+            // get record details / values
+            //$row = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+            // return true because account setting exists in the database
+            return true;
+        } else {
+            // return false if account setting does not exist in the database
+            return false;
+        }     
+    }
     // install table
     function install(){
 
