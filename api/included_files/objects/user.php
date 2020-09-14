@@ -187,6 +187,7 @@ class User{
             $this->username     = $row['username'];
             $this->email        = $row['email'];
             $this->main_color   = $row['main_color'];
+            $this->user_type    = $row['user_type'];
             $this->created      = $row['created'];
      
             // return true because account setting exists in the database
@@ -209,6 +210,7 @@ class User{
             email varchar(255) NOT NULL UNIQUE, 
             password varchar(255) NOT NULL, 
             main_color varchar(255) NULL,
+            user_type varchar(255) NULL,
             created datetime  DEFAULT CURRENT_TIMESTAMP NOT NULL, 
             modified timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id)

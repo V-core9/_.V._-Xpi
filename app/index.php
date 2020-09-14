@@ -31,6 +31,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="index" id='homepage'>Home</a>
             <a class="nav-item nav-link" href="about-us" id='aboutuspage'>About Us</a>
+            <a class="nav-item nav-link" href="dashboard-admin" id='dashboard-admin'>AdminDash</a>
             <a class="nav-item nav-link" href="dashboard" id='dashboard'>Dashboard</a>
             <a class="nav-item nav-link" href="my-account" id='update_account'>Account</a>
             <a class="nav-item nav-link" href="login" id='logout'>Logout</a>
@@ -114,6 +115,9 @@ $(document).ready(function(){
 		case 'dashboard':
 			showDashboardPage();
 			break;
+		case 'dashboard-admin':
+			showAdminDashboardPage();
+			break;
 		default:
 			open_static_page('templates/static_pages/home_page/index.php');
 		}
@@ -190,7 +194,6 @@ $(document).ready(function(){
 		 
 		        // show dashboard page & tell the user it was a successful login
 		        //showDashboardPage();
-				$('#dashboard').click();
 				//$('#response').html("<div class='alert alert-success'>Successful login.</div>");
 				
 				addCSS("body{ color: " + result.data.main_color + "; }");
@@ -198,8 +201,13 @@ $(document).ready(function(){
 				
 				
 				toastr.success("Login Successful", "Users Module - Login");
-
-				showLoggedInMenu();
+				if (result.data.user_type == 'admin'){
+					showAdminLoggedInMenu();
+					$('#dashboard-admin').click();
+				} else {
+					showLoggedInMenu();
+					$('#dashboard').click();
+				}
 		    },
 		    error: function(xhr, resp, text){
 			    // on error, tell the user login has failed & empty the input boxes
@@ -215,6 +223,12 @@ $(document).ready(function(){
 	// show dashboard page
 	$(document).on('click', '#dashboard', function(){
 	    showDashboardPage();
+	    clearResponse();
+	});
+	 
+	// show dashboard page
+	$(document).on('click', '#dashboard-admin', function(){
+	    showAdminDashboardPage();
 	    clearResponse();
 	});
 	 
@@ -319,7 +333,7 @@ $(document).ready(function(){
 	function showLoggedOutMenu(){
 	    // show login and sign up from navbar & hide logout button
 	    $("#login, #sign_up").show();
-	    $("#logout, #update_account, #dashboard").hide();
+	    $("#logout, #update_account, #dashboard, #dashboard-admin").hide();
 	}
 	 
 	// show dashboard page
@@ -341,11 +355,35 @@ $(document).ready(function(){
 		});
 	}
 	 
+	// show dashboard page
+	function showAdminDashboardPage(){
+	 
+	    // validate jwt to verify access
+	    var jwt = getCookie('jwt');
+	    $.post( frontConfig.apiUrl + "admin/users/all.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+			
+			$("#content").load("templates/admin_dashboard/index.temp.html");
+			showadminLoggedInMenu();
+	    })
+	 
+	    // show login page on error
+		.fail(function(result){
+		    showLoginPage();
+				toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
+		});
+	}
+	 
 	// if the user is logged in
 	function showLoggedInMenu(){
 	    // hide login and sign up from navbar & show logout button
 	    $("#login, #sign_up").hide();
 	    $("#logout, #update_account, #dashboard").show();
+	}
+	 
+	// if the user admin logged in
+	function showAdminLoggedInMenu(){
+	    $("#dashboard-admin").show();
+		showLoggedInMenu();
 	}
 	 
 	function showUpdateAccountFormOLD(){
