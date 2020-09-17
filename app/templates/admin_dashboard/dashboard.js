@@ -1,37 +1,77 @@
-$('#menu-action').click(function() {
-    $('.sidebarDashboard').toggleClass('active');
-    $('.main').toggleClass('active');
-    $(this).toggleClass('active');
-  
-    if ($('.sidebarDashboard').hasClass('active')) {
-      $(this).find('i').addClass('fa-close');
-      $(this).find('i').removeClass('fa-bars');
-      setCookie("dashboard_settings", "expanded", 30);
+
+(function($) {
+  "use strict"; // Start of use strict
+  var dashboard_settings=getCookie("dashboard_settings");
+      dashboard_settings = dashboard_settings.split('<>');
+      if (dashboard_settings[0] != "" && dashboard_settings[0] == "collapsed") {
+        $("#page-top").toggleClass("sidenav-toggled");
+        $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+        $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+      }
+  // Configure tooltips for collapsed side navigation
+  $('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+    template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+  })
+  // Toggle the side navigation
+  $("#sidenavToggler").click(function(e) {
+    e.preventDefault();
+    $("#page-top").toggleClass("sidenav-toggled");
+    $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+    $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+    if ($('#page-top').hasClass('sidenav-toggled')){
+        setCookie("dashboard_settings", "collapsed", 30);
     } else {
-      $(this).find('i').addClass('fa-bars');
-      $(this).find('i').removeClass('fa-close');
-      document.cookie = "dashboard_settings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "dashboard_settings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
   });
-  
-  // Add hover feedback on menu
-  $('#menu-action').hover(function() {
-      $('.sidebarDashboard').toggleClass('hovered');
+  // Force the toggled class to be removed when a collapsible nav link is clicked
+  $(".nav-item").mouseenter(function(e) {
+    e.preventDefault();
+    if ($("#page-top").hasClass("sidenav-toggled")){
+        $(this).addClass("collapsed-toggle-visible");
+    }
+  });
+  $(".nav-item").mouseleave(function(e) {
+    e.preventDefault();
+    if ($(this).hasClass('collapsed-toggle-visible') && !$('.collapsed-toggle-visible').children('.collapsed').length){
+        $(this).children('.nav-link-collapse').click();
+    }
+    $(this).removeClass("collapsed-toggle-visible");
   });
   
-  $(function() {
-    
-      var dashboard_settings=getCookie("dashboard_settings");
-      dashboard_settings = dashboard_settings.split('<>');
-      if (dashboard_settings[0] != "" && dashboard_settings[0] == "expanded") {
-        $('.sidebarDashboard').addClass('active');
-        $('.main').addClass('active');
-        $('#menu-action').toggleClass('active');
-        $('#menu-action').find('i').addClass('fa-close');
-        $('#menu-action').find('i').removeClass('fa-bars');
-      }
+  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+  $('#page-top.fixed-nav .navbar-sidenav, #page-top.fixed-nav .sidenav-toggler, #page-top.fixed-nav .navbar-collapse').on('mousewheel DOMMouseScroll', function(e) {
+    var e0 = e.originalEvent,
+      delta = e0.wheelDelta || -e0.detail;
+    this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+    e.preventDefault();
+  });
+  // Scroll to top button appear
+  $(document).scroll(function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
+  // Configure tooltips globally
+  $('[data-toggle="tooltip"]').tooltip()
+  // Smooth scrolling using jQuery easing
+  $(document).on('click', 'a.scroll-to-top', function(event) {
+    var $anchor = $(this);
+    $('html, #page-top').stop().animate({
+      scrollTop: ($($anchor.attr('href')).offset().top)
+    }, 1000, 'easeInOutExpo');
+    event.preventDefault();
   });
   
+})(jQuery); // End of use strict
+
+
+
+
+
   $(function() {
     getAllUsersAdmin();
   })
@@ -52,3 +92,8 @@ $('#menu-action').click(function() {
                   toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
           });
   }
+
+
+  $( document ).ready(function() {
+    $('.content-container').css({'transition-delay': '1s','opacity' : '1'});
+});

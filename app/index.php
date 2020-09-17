@@ -20,39 +20,40 @@
 		</script>
     </head>
 <body>
- 
-<!-- navbar -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#" id="home_logo"><i class="fa fa-snowflake-o fa-lg text-primary mr-2"></i> OmegaDemo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index" id='homepage'>Home</a>
-            <a class="nav-item nav-link" href="about-us" id='aboutuspage'>About Us</a>
-            <a class="nav-item nav-link" href="dashboard-admin" id='dashboard-admin'>AdminDash</a>
-            <a class="nav-item nav-link" href="dashboard" id='dashboard'>Dashboard</a>
-            <a class="nav-item nav-link" href="my-account" id='update_account'>Account</a>
-            <a class="nav-item nav-link" href="login" id='logout'>Logout</a>
-            <a class="nav-item nav-link" href="login" id='login'>Login</a>
-            <a class="nav-item nav-link" href="register" id='sign_up'>Sign Up</a>
-        </div>
-    </div>
-</nav>
-<!-- /navbar -->
- 
-<!-- container -->
-<main role="main" class="starter-template">
-	<!-- where prompt / messages will appear -->
-	<div id="response"></div>
+ <div class="appContainer">
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="#" id="home_logo"><i class="fa fa-snowflake-o fa-lg text-primary mr-2"></i> OmegaDemo</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" href="index" id='homepage'>Home</a>
+				<a class="nav-item nav-link" href="about-us" id='aboutuspage'>About Us</a>
+				<a class="nav-item nav-link open-admin-dashboard" href="dashboard-admin" id='dashboard-admin'>AdminDash</a>
+				<a class="nav-item nav-link" href="dashboard" id='dashboard'>Dashboard</a>
+				<a class="nav-item nav-link" href="my-account" id='update_account'>Account</a>
+				<a class="nav-item nav-link" href="login" id='logout'>Logout</a>
+				<a class="nav-item nav-link" href="login" id='login'>Login</a>
+				<a class="nav-item nav-link" href="register" id='sign_up'>Sign Up</a>
+			</div>
+		</div>
+	</nav>
+	<!-- /navbar -->
+	
+	<!-- container -->
+	<main role="main" class="starter-template">
+		<!-- where prompt / messages will appear -->
+		<div id="response"></div>
 
-	<!-- where main content will appear -->
-	<div id="content"></div>
-</main>
-<!-- /container -->
- 
-<div class="notification_overlay"></div>
+		<!-- where main content will appear -->
+		<div id="content"></div>
+	</main>
+	<!-- /container -->
+	
+	<div class="notification_overlay"></div>
+</div>
 
 <!-- jQuery & Bootstrap 4 JavaScript libraries -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -61,6 +62,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.0.3/dist/js/bootstrap-colorpicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
  
+
 <script>
 var debuggingMode = false;
 
@@ -227,7 +229,7 @@ $(document).ready(function(){
 	});
 	 
 	// show dashboard page
-	$(document).on('click', '#dashboard-admin', function(){
+	$(document).on('click', '.open-admin-dashboard', function(){
 	    showAdminDashboardPage();
 	    clearResponse();
 	});
@@ -303,73 +305,6 @@ $(document).ready(function(){
 	    return false;
 	});
 	 
-	// logout the user
-	$(document).on('click', '#logout', function(){
-	    showLoginPage();
-		//$('#response').html("<div class='alert alert-info'>You are logged out.</div>");
-		
-		toastr.success("Logout Successful", "Users Module - Login");
-	});
-
-	// show login page
-	function showLoginPage(){
-	    // remove jwt
-	    setCookie("jwt", "", 1);
-		$("#content").load("templates/users/login.temp.html");
-	    clearResponse();
-	    showLoggedOutMenu();
-		history.pushState(null, 'Login Page', 'login')
-	}
-	 
-	// function to set cookie
-	function setCookie(cname, cvalue, exdays) {
-	    var d = new Date();
-	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	    var expires = "expires="+ d.toUTCString();
-	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
-	 
-	// if the user is logged out
-	function showLoggedOutMenu(){
-	    // show login and sign up from navbar & hide logout button
-	    $("#login, #sign_up").show();
-	    $("#logout, #update_account, #dashboard, #dashboard-admin").hide();
-	}
-	 
-	// show dashboard page
-	function showDashboardPage(){
-	 
-	    // validate jwt to verify access
-	    var jwt = getCookie('jwt');
-	    $.post( frontConfig.apiUrl + "users/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
-	 
-			$("#content").load("templates/dashboard/index.temp.html");
-	    })
-	 
-	    // show login page on error
-		.fail(function(result){
-		    showLoginPage();
-		    //$('#response').html("<div class='alert alert-danger'>Please login to access the dashboard page.</div>");
-			toastr.success("Please login to access the dashboard page", "Pages: Dashboard");
-		});
-	}
-	 
-	// show dashboard page
-	function showAdminDashboardPage(){
-	 
-	    // validate jwt to verify access
-	    var jwt = getCookie('jwt');
-	    $.post( frontConfig.apiUrl + "admin/dashboard/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
-			
-			$("#content").load("templates/admin_dashboard/index.temp.html");
-	    })
-	 
-	    // show login page on error
-		.fail(function(result){
-		    showLoginPage();
-			toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
-		});
-	}
 	 
 	function showUpdateAccountFormOLD(){
 	    // validate jwt to verify access
@@ -438,6 +373,14 @@ $(document).ready(function(){
 	};
 });
 
+
+// logout the user
+$(document).on('click', '#logout , .logout-link', function(){
+	showLoginPage();
+	//$('#response').html("<div class='alert alert-info'>You are logged out.</div>");
+	
+	toastr.success("Logout Successful", "Users Module - Login");
+});
 
 	 
 function showUpdateAccountForm(){
@@ -568,7 +511,8 @@ function showUpdateAccountForm(){
 
 
 
-function init_colorpicker_fn( id_str, format_str = 'hex' ) {
+
+	function init_colorpicker_fn( id_str, format_str = 'hex' ) {
 	
 	if ( !id_str.startsWith( '#' ) ) {
 		id_str = '#' + id_str;
@@ -653,6 +597,68 @@ function open_static_page( $page ){
 	});
 }
 
+
+// show dashboard page
+function showDashboardPage(){
+	
+	// validate jwt to verify access
+	var jwt = getCookie('jwt');
+	$.post( frontConfig.apiUrl + "users/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+
+		$("#content").load("templates/dashboard/index.temp.html");
+	})
+
+	// show login page on error
+	.fail(function(result){
+		showLoginPage();
+		//$('#response').html("<div class='alert alert-danger'>Please login to access the dashboard page.</div>");
+		toastr.success("Please login to access the dashboard page", "Pages: Dashboard");
+	});
+}
+	 
+// show dashboard page
+function showAdminDashboardPage(){
+	
+	// validate jwt to verify access
+	var jwt = getCookie('jwt');
+	$.post( frontConfig.apiUrl + "admin/dashboard/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+		
+		$(".appContainer").load("templates/admin_dashboard/index.temp.html");
+	})
+	
+	// show login page on error
+	.fail(function(result){
+		showLoginPage();
+		toastr.success( result.responseJSON.message+"; Error:"+result.responseJSON.error , "Pages: Dashboard");
+	});
+}
+
+	// show login page
+	function showLoginPage(){
+	    // remove jwt
+	    setCookie("jwt", "", 1);
+		$("#content").load("templates/users/login.temp.html");
+	    clearResponse();
+	    showLoggedOutMenu();
+		history.pushState(null, 'Login Page', 'login')
+	}
+	 
+	// function to set cookie
+	function setCookie(cname, cvalue, exdays) {
+	    var d = new Date();
+	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	    var expires = "expires="+ d.toUTCString();
+	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+	 
+	// if the user is logged out
+	function showLoggedOutMenu(){
+	    // show login and sign up from navbar & hide logout button
+	    $("#login, #sign_up").show();
+	    $("#logout, #update_account, #dashboard, #dashboard-admin").hide();
+	}
+	 
+
 function show_register_form(){
 	
 	var jwt = getCookie('jwt');
@@ -706,69 +712,8 @@ function getCookie(cname) {
   return "";
 }
 
-//HISTORY TESTING
-
-History = History || {};
-History.pathname = null;
-History.previousHash = null;
-History.hashCheckInterval = -1;
-History.stack = [];
-History.initialize = function () {
-    if (History.supportsHistoryPushState()) {
-        History.pathname = document.location.pathname;
-        $(window).bind("popstate", History.onHistoryChanged);
-    } else {
-        History.hashCheckInterval = setInterval(History.onCheckHash, 200);
-    }
-};
-History.supportsHistoryPushState = function () {
-    return ("pushState" in window.history) && window.history.pushState !== null;
-};
-History.onCheckHash = function () {
-    if (document.location.hash !== History.previousHash) {
-        History.navigateToPath(document.location.hash.slice(1));
-        History.previousHash = document.location.hash;
-    }
-};
-History.pushState = function (url) {
-    if (History.supportsHistoryPushState()) {
-        window.history.pushState("", "", url);
-    } else {
-        History.previousHash = url;
-        document.location.hash = url;
-    }
-    History.stack.push(url);
-};
-History.onHistoryChanged = function (event) {
-    if (History.supportsHistoryPushState()) {
-        if(History.pathname != document.location.pathname){
-            History.pathname = null;
-            History.navigateToPath(document.location.pathname);
-        }
-    }
-};
-History.navigateToPath = function(pathname) {
-    History.pushState(pathname);
-
-    // DO SOME HANDLING OF YOUR PATH HERE
-
-};
-
-$(function(){
-		$("a").click(function(e){
-			e.preventDefault();
-			var href = $(this).attr('href');
-			
-			var helperCurrentPath = window.location.pathname;
-			helperCurrentPath = helperCurrentPath.split('/');
-			var lastsegment = helperCurrentPath[helperCurrentPath.length-1];
-			if (lastsegment != href){
-				History.navigateToPath( href )
-			}
-			//return false;
-		});
-	});
 </script>
  
+<script src="assets/js/history.js"></script>
 </body>
 </html>
