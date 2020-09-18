@@ -48,6 +48,7 @@ if($jwt){
 		$user->username = $data->username;
 		$user->main_color = $data->main_color;
 		$user->id = $decoded->data->id;
+		$user->user_type = $decoded->data->user_type;
 		 
 		// create the product
 		if($user->update()){
@@ -61,7 +62,8 @@ if($jwt){
 			       "id" => $user->id,
 			       "firstname" => $user->firstname,
 			       "lastname" => $user->lastname,
-			       "email" => $user->email
+			       "email" => $user->email,
+				   "user_type" => $user->user_type
 			   )
 			);
 			$jwt = JWT::encode($token, $key);

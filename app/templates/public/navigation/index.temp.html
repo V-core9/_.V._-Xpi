@@ -1,0 +1,21 @@
+<a class="navbar-brand" href="#" id="home_logo"><i class="fa fa-snowflake-o fa-lg text-primary mr-2"></i> OmegaDemo</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="index" id='homepage'>Home</a>
+        <a class="nav-item nav-link" href="about-us" id='aboutuspage'>About Us</a>
+        <a class="nav-item nav-link" href="login" id='login'>Login</a>
+        <a class="nav-item nav-link" href="register" id='sign_up'>Sign Up</a>
+    </div>
+</div>
+
+<script>
+$(function(){
+		$('a').click(function(e){
+			e.preventDefault();
+			linkClickFunction(e); 
+		});
+	});
+</script>
