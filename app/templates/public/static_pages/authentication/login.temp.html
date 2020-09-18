@@ -1,0 +1,66 @@
+<div class="container">
+    <h2>Login</h2>
+    <form id='login_form'>
+        <div class='form-group'>
+            <label for='email'>Email address</label>
+            <input type='email' class='form-control' id='email' name='email' placeholder='Enter email' autocomplete="email">
+        </div>
+
+        <div class='form-group'>
+            <label for='password'>Password</label>
+            <input type='password' class='form-control' id='password' name='password' placeholder='Password'  autocomplete="current-password">
+        </div>
+
+        <button type='submit' class='btn btn-primary'>Login</button>
+    </form>
+</div>
+
+<script>
+     
+	// trigger when login form is submitted
+	$('#login_form').on('submit', function(e){
+        e.preventDefault();
+	    // get form data
+	    var login_form=$(this);
+	    var form_data=JSON.stringify(login_form.serializeObject());
+	 
+	    // submit form data to api
+		$.ajax({
+		    url: frontConfig.apiUrl + "users/login.php",
+		    type : "POST",
+		    contentType : 'application/json',
+		    data : form_data,
+		    success : function(result){
+		 
+		        // store jwt to cookie
+		        setCookie("jwt", result.jwt, 1);
+		 
+		        // show dashboard page & tell the user it was a successful login
+		        //showDashboardPage();
+				//$('#response').html("<div class='alert alert-success'>Successful login.</div>");
+				
+				addCSS("body{ color: " + result.data.main_color + "; }");
+				setCookie("main_color", result.data.main_color , 1);
+				
+				
+				toastr.success("Login Successful", "Users Module - Login");
+				if (result.data.user_type == 'admin'){
+                    showAdminLoggedInMenu();
+                    $('#home').click();
+				} else {
+					showLoggedInMenu();
+                    $('#home').click();
+				}
+		    },
+		    error: function(xhr, resp, text){
+			    // on error, tell the user login has failed & empty the input boxes
+			    //$('#response').html("<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>");
+				toastr.error("Login Failed. Email or password is incorrect.", "Users Module - Login");
+			    login_form.find('input').val('');
+			}
+		});
+	 
+	    return false;
+    });
+     
+</script>

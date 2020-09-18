@@ -1,5 +1,5 @@
 <div class="headerDashboard">
-  <a href="#" id="menu-action">
+  <a href="#" id="menu-action" title="Click here to toggle sidebar width.">
     <i class="fa fa-bars"></i>
     <span>Close</span>
   </a>
@@ -21,13 +21,13 @@
 <div class="main">
   <div class="">
     <div class="jumbotron">
-      <h1>Hello, ADMIN. I'll be tracking you!<a class="anchorjs-link" href="#hello,-world!"><span class="anchorjs-icon"></span></a></h1>
+      <h1>Hello, ADMIN. I'll be tracking you!</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur quisquam necessitatibus nesciunt nihil quod tenetur quas laudantium. Impedit, soluta tempore saepe voluptatibus officia quos sunt cum, veritatis laudantium mollitia sequi.</p>
       
       <p><a class="btn btn-primary" href="#" role="button">Learn more</a></p>
     </div>
     <div class="bs-callout bs-callout-danger" onload="getAllUsersAdmin()">
-      <h4>Users:</h4>
+      <h2>Users:</h2>
       We have so far <span class="numberOfUsers"></span>
     </div>
     <p><p>FRENCH SAILOR. Hist, boys! let's have a jig or two before we ride to anchor in Blanket Bay. What say ye? There comes the other watch. Stand by all legs! Pip! little Pip! hurrah with your tambourine!</p>
@@ -82,12 +82,15 @@ p {
   font-size: 16px;
   line-height: 1.42857143;
 }
+.btn-primary{
+  background: #0250a5;
+}
 .headerDashboard {
   position: fixed;
   z-index: 10;
   top: 56px;
   left: 0;
-  background: #3498DB;
+  background: #0250a5;
   width: 100%;
   height: 50px;
   line-height: 50px;

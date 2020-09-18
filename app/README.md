@@ -24,6 +24,14 @@ npm install gulp-autoprefixer</br>
 npm install gulp-rename</br>
 npm install gulp-sass</br>
 
+# Also few frontend libraries
+npm install toastr
+npm install bootstrap-colorpicker
+npm install popper.js@1.14.3
+npm install bootstrap@4.x.x
+npm install jquery
+
+
 # So you can run "gulp" command in root and have .min.css file(s) exported
 gulp min-css-export-single-file</br>
 gulp min-css-export-all</br>
