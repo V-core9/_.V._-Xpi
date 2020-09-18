@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+		<link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -8,6 +9,7 @@
         <title>Rest API Authentication Example</title>
 		<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
 
+		<script src="assets/js/script.js"></script>
         <!-- Bootstrap 4 CSS and custom CSS -->
 		<link rel="preload" href="node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">  
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
@@ -19,6 +21,8 @@
 		<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 		
 		<link rel="stylesheet" type="text/css" href="node_modules/toastr/build/toastr.min.css" />
+		<meta name="theme-color" content="#317EFB"/>
+		<link rel="apple-touch-icon" href="assets/img/logo.png">
 		<script>
 			var frontConfig = {
 				apiUrl : "http://localhost:/dev/XOmega/api/"
@@ -26,7 +30,7 @@
 		</script>
     </head>
 <body>
- 
+<noscript>    This page requires you to have the Javascript enabled.</noscript>
 <!-- navbar -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top topAppNavbar">
     
