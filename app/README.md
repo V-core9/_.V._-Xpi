@@ -25,18 +25,19 @@ npm install gulp-rename</br>
 npm install gulp-sass</br>
 
 # Also few frontend libraries
-npm install toastr
-npm install bootstrap-colorpicker
-npm install popper.js@1.14.3
-npm install bootstrap@4.x.x
-npm install jquery
-
+npm install toastr</br>
+npm install bootstrap-colorpicker</br>
+npm install popper.js@1.14.3</br>
+npm install bootstrap@4.x.x</br>
+npm install jquery</br>
+npm install particles.js
+npm install @iconscout/unicons
 
 # So you can run "gulp" command in root and have .min.css file(s) exported
 gulp min-css-export-single-file</br>
 gulp min-css-export-all</br>
-gulp sass-export<br>
-gulp watch<br>
+gulp sass-export</br>
+gulp watch</br>
 
 
 

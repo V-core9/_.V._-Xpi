@@ -23,7 +23,8 @@ function show_register_form(){
 function showLoginPage(){
     // remove jwt
     setCookie("jwt", "", 1);
-    $("#content").load("templates/public/static_pages/authentication/login.temp.html");
+    //$("#content").load("templates/public/static_pages/authentication/login.temp.html");
+    $("#content").load("templates/public/static_pages/authentication/login.register.alt.temp.html");
     clearResponse();
     showLoggedOutMenu();
     history.pushState(null, 'Login Page', 'login')
