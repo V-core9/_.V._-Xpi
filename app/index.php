@@ -9,11 +9,16 @@
 		<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
 
         <!-- Bootstrap 4 CSS and custom CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.0.3/dist/css/bootstrap-colorpicker.min.css" crossorigin="anonymous" />
+		<link rel="preload" href="node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">  
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="preload" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" as="style">  
+		<link rel="stylesheet" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" />
+		<link rel="preload" href="custom.css" as="style">  
 		<link rel="stylesheet" type="text/css" href="custom.css" />
-		<link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+		<link rel="preload" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" as="style">  
+		<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+		
+		<link rel="stylesheet" type="text/css" href="node_modules/toastr/build/toastr.min.css" />
 		<script>
 			var frontConfig = {
 				apiUrl : "http://localhost:/dev/XOmega/api/"
