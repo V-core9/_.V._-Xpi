@@ -16,7 +16,7 @@ npm install -g sass</br>
 sass --watch src/scss:src/css</br>
 
 # One Install To bind them all
-npm install sweetalert2 gulp gulp-concat gulp-minify-css gulp-autoprefixer gulp-rename gulp-sass toastr bootstrap-colorpicker popper.js@1.14.3 bootstrap@4.x.x jquery particles.js @iconscout/unicons
+npm install sweetalert2 gulp gulp-concat gulp-minify-css gulp-autoprefixer gulp-rename gulp-sass toastr bootstrap-colorpicker popper.js@1.14.3 bootstrap@4.x.x jquery particles.js @iconscout/unicons @fortawesome/fontawesome-free
 
 # Run npm installs for gulp to work
 npm install sweetalert2</br>
@@ -35,6 +35,7 @@ npm install bootstrap@4.x.x</br>
 npm install jquery</br>
 npm install particles.js</br>
 npm install @iconscout/unicons</br>
+npm install @fortawesome/fontawesome-free
 
 # So you can run "gulp" command in root and have .min.css file(s) exported
 gulp min-css-export-single-file</br>
