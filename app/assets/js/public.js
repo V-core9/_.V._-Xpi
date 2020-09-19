@@ -19,6 +19,20 @@ toastr.options = {
                 }
 const addCSS = s =>(d=>{d.head.appendChild(d.createElement("style")).innerHTML=s})(document);     
 
+
+var jwtTest = getCookie('jwt');
+	
+if(jwtTest != ""){
+	var helperNavBool = true;
+	helperNavBool = showAdminLoggedInMenu();
+	if (helperNavBool){ 
+		//$('#dashboard').click();
+		showLoggedInMenu()
+	}
+} else {
+	showLoggedOutMenu();
+}
+
 $(document).ready(function(){
 	
 	
@@ -61,19 +75,6 @@ $(document).ready(function(){
 		}
 	
 
-
-	var jwtTest = getCookie('jwt');
-	
-	if(jwtTest != ""){
-		var helperNavBool = true;
-		helperNavBool = showAdminLoggedInMenu();
-		if (helperNavBool){ 
-			//$('#dashboard').click();
-			showLoggedInMenu()
-		}
-	} else {
-		showLoggedOutMenu();
-	}
 
     // show sign up / registration form
     $(document).on('click', '#sign_up', function(){
@@ -174,7 +175,7 @@ $(document).ready(function(){
 	 
 	// logout the user
 	$(document).on('click', '#logout', function(){
-	    showLoginPage();
+	    showLoggedOutPage();
 		//$('#response').html("<div class='alert alert-info'>You are logged out.</div>");
 		
 		toastr.success("Logout Successful", "Users Module - Login");

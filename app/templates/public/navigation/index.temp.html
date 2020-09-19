@@ -8,7 +8,7 @@
         <a class="nav-item nav-link" href="about-us" id='aboutuspage'>About Us</a>
         <a class="nav-item nav-link" href="login" id='login'>Login</a>
         <a class="nav-item nav-link" href="register" id='sign_up'>Sign Up</a>
-        <button id="install_button" hidden>Install</button>
+        <button id="install_button" onclick="installApp()" hidden>Install</button>
     </div>
 </div>
 
@@ -31,10 +31,8 @@ if(typeof deferredPrompt === 'undefined'){
 };
 
 if(typeof installButton === 'undefined'){
-    const installButton = '';    
-};
+    const installButton = document.getElementById("install_button");    
 
-installButton = document.getElementById("install_button")
 
 window.addEventListener("beforeinstallprompt", e => {
   console.log("beforeinstallprompt fired");
@@ -43,9 +41,11 @@ window.addEventListener("beforeinstallprompt", e => {
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
   // Show the install button
-  installButton.hidden = false;
-  installButton.addEventListener("click", installApp);
+    if(typeof installButtonStatus === 'undefined'){
+        installButton.hidden = false;
+    }
 });
+};
 
 function installApp() {
 	// Show the prompt
