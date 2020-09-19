@@ -41,6 +41,8 @@ var urlsToCache = [
   '/dev/XOmega/app/node_modules/@iconscout/unicons/fonts/line/unicons-8.ttf',
   '/dev/XOmega/app/node_modules/@iconscout/unicons/fonts/line/unicons-7.woff2',
   '/dev/XOmega/app/node_modules/@iconscout/unicons/fonts/line/unicons-8.woff2',
+  '/dev/XOmega/app/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2',
+  '/dev/XOmega/app/node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2',
   'https://res.cloudinary.com/mhmd/image/upload/v1556834133/avatar-1_s02nlg.png',
   'https://res.cloudinary.com/mhmd/image/upload/v1556834133/avatar-2_f8dowd.png',
   'https://res.cloudinary.com/mhmd/image/upload/v1556834130/avatar-3_hzlize.png',
