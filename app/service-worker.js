@@ -26,6 +26,8 @@ var urlsToCache = [
   '/dev/XOmega/app/',
   '/dev/XOmega/app/index',
   '/dev/XOmega/app/index.html',
+  '/dev/XOmega/app/templates/public/static_pages/authentication/register.temp.html',
+  '/dev/XOmega/app/about-us',
   '/dev/XOmega/app/templates/public/static_pages/about_us_page/index.php',
   '/dev/XOmega/app/templates/public/static_pages/authentication/login.register.alt.temp.html',
   '/dev/XOmega/app/assets/img/logo-192.png',
@@ -46,7 +48,6 @@ var urlsToCache = [
   'https://res.cloudinary.com/mhmd/image/upload/v1556834136/img-2_vdgqgn.jpg',
   'https://res.cloudinary.com/mhmd/image/upload/v1556834139/img-1_e25nvh.jpg',
   'https://res.cloudinary.com/mhmd/image/upload/v1556834136/illus_kftyh4.png',
-  '/dev/XOmega/app/templates/public/static_pages/authentication/register.temp.html'
 ];
 
 self.addEventListener('install', function(event) {
