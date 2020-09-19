@@ -22,11 +22,9 @@ function show_register_form(){
 // 3. Show Login Page
 function showLoginPage(){
     // remove jwt
-    setCookie("jwt", "", 1);
     //$("#content").load("templates/public/static_pages/authentication/login.temp.html");
     $("#content").load("templates/public/static_pages/authentication/login.register.alt.temp.html");
     clearResponse();
-    showLoggedOutMenu();
     history.pushState(null, 'Login Page', 'login')
 }
 // END 3. Show Login Page
@@ -196,3 +194,10 @@ function showAdminDashboardPage(){
 }
 // END 6. show dashboard pages
 
+// 7. Show Loggout page
+function showLoggedOutPage(){
+    
+    setCookie("jwt", "", 1);
+    showLoggedOutMenu();
+    showLoginPage();
+}
