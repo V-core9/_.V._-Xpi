@@ -1,4 +1,4 @@
-// VERSION: 1.0.20
+// VERSION: 1.0.60
 
 var CACHE_NAME = 'offline-form';
 var FOLDER_NAME = 'post_requests'

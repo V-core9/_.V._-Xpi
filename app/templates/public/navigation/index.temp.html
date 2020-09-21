@@ -9,18 +9,15 @@
         <a class="nav-item nav-link" id='login'>Login</a>
         <a class="nav-item nav-link" id='sign_up'>Sign Up</a>
         <button id="install_button" onclick="installApp()" hidden>Install</button>
+        <button id="install_notifications_button" onclick="displayNotification()">Notifications</button>
     </div>
 </div>
 
 <script>    
 
-/////SERVICE WORKER /////////////
-if(typeof deferredPrompt === 'undefined'){
     let deferredPrompt; // Allows to show the install prompt
-};
-
-if(typeof installButton === 'undefined'){
-    const installButton = document.getElementById("install_button");    
+    //const installButton = document.getElementById("install_button");   
+    //const installButtonNotif = document.getElementById("install_notifications_button"); 
 
 
 window.addEventListener("beforeinstallprompt", e => {
@@ -31,30 +28,32 @@ window.addEventListener("beforeinstallprompt", e => {
   deferredPrompt = e;
   // Show the install button
     if(typeof installButtonStatus === 'undefined'){
-        installButton.hidden = false;
+      document.getElementById("install_button").hidden = false;
+    }
+    if (window.Notification && Notification.permission === "granted") {
+      document.getElementById("install_notifications_button").hidden = true;
     }
 });
-};
 
 function installApp() {
 	// Show the prompt
 	deferredPrompt.prompt();
-	installButton.disabled = true;
+	document.getElementById("install_button").hidden = true;
   
 	// Wait for the user to respond to the prompt
 	deferredPrompt.userChoice.then(choiceResult => {
 	  if (choiceResult.outcome === "accepted") {
-		console.log("PWA setup accepted");
-		installButton.hidden = true;
+		  console.log("PWA setup accepted");
+      document.getElementById("install_button").hidden = true;
 	  } else {
-		console.log("PWA setup rejected");
+		  console.log("PWA setup rejected");
 	  }
-	  installButton.disabled = false;
+	  document.getElementById("install_button").hidden = false;
 	  deferredPrompt = null;
 	});
-  }
+};
 
-  window.addEventListener("appinstalled", evt => {
-	console.log("appinstalled fired", evt);
-  });
+window.addEventListener("appinstalled", evt => {
+  console.log("appinstalled fired", evt);
+});
 </script>
