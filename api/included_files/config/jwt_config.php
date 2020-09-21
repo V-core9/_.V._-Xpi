@@ -11,6 +11,6 @@ $iss = "http://localhost:8080/";
 $aud = "http://localhost:8080/";
 
 $iat = time();
-$exp = ($iat + 10);
+$exp = ($iat + 600);
 $nbf = $iat;
 ?>
