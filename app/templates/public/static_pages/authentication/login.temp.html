@@ -16,7 +16,6 @@
 </div>
 
 <script>
-     
 	// trigger when login form is submitted
 	$('#login_form').on('submit', function(e){
         e.preventDefault();
@@ -45,11 +44,11 @@
 				
 				toastr.success("Login Successful", "Users Module - Login");
 				if (result.data.user_type == 'admin'){
-                    showAdminLoggedInMenu();
-                    $('#home').click();
+					showAdminLoggedInMenu();
+					showAdminDashboardPage();
 				} else {
 					showLoggedInMenu();
-                    $('#home').click();
+					showDashboardPage();
 				}
 		    },
 		    error: function(xhr, resp, text){
@@ -62,5 +61,4 @@
 	 
 	    return false;
     });
-     
 </script>

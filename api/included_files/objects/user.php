@@ -201,7 +201,7 @@ class User{
     // get user row/settings
     public function get_admin_all_users(){
 
-        $query = "SELECT * FROM ". $this->table_name ;
+        $query = "SELECT count(*) FROM ". $this->table_name ;
         
         // prepare the query
         $stmt = $this->conn->prepare( $query );
@@ -210,7 +210,7 @@ class User{
         $stmt->execute();
 
         // get number of rows
-        $num = $stmt->rowCount();
+        $num = $stmt->fetchColumn();
 
         // if account settings exists, assign values to object properties for easy access and use for php sessions
         if($num>0){
