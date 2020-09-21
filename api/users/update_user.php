@@ -57,6 +57,7 @@ if($jwt){
 			   "iss" => $iss,
 			   "aud" => $aud,
 			   "iat" => $iat,
+			   "exp" => $exp,
 			   "nbf" => $nbf,
 			   "data" => array(
 			       "id" => $user->id,

@@ -1,33 +1,34 @@
 <!doctype html>
 <html lang="en">
     <head>
-		<link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+		<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<link rel="icon" href="data:,">
+		<meta name="theme-color" content="#317EFB"/>
+		<link rel="apple-touch-icon" href="assets/public/img/logo.png">
+		<link rel="icon" href="assets/public/img/logo.png">
         <title>Omega - Rest API Authentication Example</title>
 		<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
 
-		<script src="assets/js/script.js"></script>
+		<script src="assets/public/js/sw-installer.js"></script>
         <!-- Bootstrap 4 CSS and custom CSS -->
 		<link rel="preload" href="node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">  
 		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="preload" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" as="style">  
 		<link rel="stylesheet" href="node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" />
-		<link rel="preload" href="custom.css" as="style">  
-		<link rel="stylesheet" type="text/css" href="custom.css" />
 		<link rel="preload" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" as="style">  
 		<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 		
 		<link rel="stylesheet" type="text/css" href="node_modules/toastr/build/toastr.min.css" />
-		<meta name="theme-color" content="#317EFB"/>
-		<link rel="apple-touch-icon" href="assets/img/logo.png">
 		<script>
 			var frontConfig = {
-				apiUrl : "http://localhost:/dev/XOmega/api/"
+				apiUrl : "http://localhost:/dev/XOmega/api/",
+				appUrl : "http://localhost:/dev/XOmega/app/"
 			}
 		</script>
+		<link rel="preload" href="assets/public/css/main.min.css" as="style">  
+		<link rel="stylesheet" href="assets/public/css/main.min.css">
     </head>
 <body>
 <noscript>    This page requires you to have the Javascript enabled.</noscript>
@@ -57,9 +58,9 @@
 <script src="node_modules/toastr/build/toastr.min.js"></script>
  
 
-<script src="assets/js/public-helpers.js"></script>
-<script src="assets/js/public-navigation.js"></script>
-<script src="assets/js/public.js"></script>
+<script src="assets/public/js/helpers.js"></script>
+<script src="assets/public/js/navigation.js"></script>
+<script src="assets/public/js/main.js"></script>
  
 </body>
 </html>

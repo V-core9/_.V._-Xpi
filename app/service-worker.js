@@ -1,3 +1,4 @@
+
 var CACHE_NAME = 'offline-form';
 var FOLDER_NAME = 'post_requests'
 var FOLDER_NAME_GET = 'get_requests'
