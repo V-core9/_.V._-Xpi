@@ -1,8 +1,9 @@
+// VERSION: 1.0.20
 
 var CACHE_NAME = 'offline-form';
 var FOLDER_NAME = 'post_requests'
 var FOLDER_NAME_GET = 'get_requests'
-var IDB_VERSION = 2
+var IDB_VERSION = 1
 var form_data
 var urlsToCache = [
   '/',
