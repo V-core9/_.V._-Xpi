@@ -47,8 +47,8 @@ function installApp() {
       document.getElementById("install_button").hidden = true;
 	  } else {
 		  console.log("PWA setup rejected");
+	    document.getElementById("install_button").hidden = false;
 	  }
-	  document.getElementById("install_button").hidden = false;
 	  deferredPrompt = null;
 	});
 };

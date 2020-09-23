@@ -214,6 +214,20 @@ function showLoggedOutPage(){
     clearResponse();
     
     setCookie("jwt", "", 1);
-    showLoggedOutMenu();
-    showLoginPage();
+    if (getCookie('jwt') == ''){
+        Swal.fire(
+            'Logged out!',
+            'Your token was succesfully removed.',
+            'success'
+            )
+            showLoggedOutMenu();
+            showLoginPage();
+    } else {
+        Swal.fire(
+            'OUPS...',
+            'Something went wrong, please try again!',
+            'error'
+            )
+            showLoggedOutMenu
+    }
 }
