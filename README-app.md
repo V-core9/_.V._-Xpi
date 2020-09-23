@@ -1,4 +1,4 @@
-# APP
+# APP docs
 
 ## usage
 
@@ -15,17 +15,25 @@ npm install -g sass</br>
 # Run command to update CSS by editing SCSS
 sass --watch src/scss:src/css</br>
 
-# One Install To bind them all
-npm install sweetalert2 gulp gulp-concat gulp-minify-css gulp-autoprefixer gulp-rename gulp-sass toastr bootstrap-colorpicker popper.js@1.14.3 bootstrap@4.x.x jquery particles.js @iconscout/unicons @fortawesome/fontawesome-free sweetalert2
+# [Run this in app/src folder] One Install To bind them all for development
+npm install gulp gulp-concat gulp-minify-css gulp-autoprefixer gulp-rename gulp-sass
 
 # Run npm installs for gulp to work
-npm install sweetalert2</br>
 npm install gulp</br>
 npm install gulp-concat</br>
 npm install gulp-minify-css</br>
 npm install gulp-autoprefixer</br>
 npm install gulp-rename</br>
 npm install gulp-sass</br>
+
+# So you can run "gulp" command in root and have .min.css file(s) exported
+gulp min-css-export-single-file</br>
+gulp min-css-export-all</br>
+gulp sass-export</br>
+gulp watch</br>
+
+# [Run this in app folder] One Install To bind them all for production
+npm install toastr bootstrap-colorpicker popper.js@1.14.3 bootstrap@4.x.x jquery particles.js @iconscout/unicons @fortawesome/fontawesome-free sweetalert2
 
 # Also few frontend libraries
 npm install toastr</br>
@@ -37,14 +45,6 @@ npm install particles.js</br>
 npm install @iconscout/unicons</br>
 npm install @fortawesome/fontawesome-free
 npm install sweetalert2
-
-# So you can run "gulp" command in root and have .min.css file(s) exported
-gulp min-css-export-single-file</br>
-gulp min-css-export-all</br>
-gulp sass-export</br>
-gulp watch</br>
-
-
 
 
 **First create users in the "api_db" database**

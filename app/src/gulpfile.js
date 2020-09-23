@@ -12,25 +12,25 @@ gulp.task('min-css-export-single-file', function(cb){
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('style.min.css'))
-    .pipe(gulp.dest('assets/public/css'))
+    .pipe(gulp.dest('../assets/public/css'))
     // create task
     gulp.src('src/application/css/*.css')
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('style.min.css'))
-    .pipe(gulp.dest('assets/application/css'))
+    .pipe(gulp.dest('../assets/application/css'))
     // create task
     gulp.src('src/merchant/css/*.css')
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('style.min.css'))
-    .pipe(gulp.dest('assets/merchant/css'))
+    .pipe(gulp.dest('../assets/merchant/css'))
     // create task
     gulp.src('src/admin/css/*.css')
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('style.min.css'))
-    .pipe(gulp.dest('assets/admin/css'))
+    .pipe(gulp.dest('../assets/admin/css'))
     
     cb();
 });
@@ -46,7 +46,7 @@ gulp.task('min-css-export-all', function(cb){
         path.basename += "";
         path.extname = ".min.css";
       }))
-    .pipe(gulp.dest('assets/public/css'))
+    .pipe(gulp.dest('../assets/public/css'))
 
     gulp.src('src/application/css/*.css')
     .pipe(minifyCSS())
@@ -56,7 +56,7 @@ gulp.task('min-css-export-all', function(cb){
         path.basename += "";
         path.extname = ".min.css";
       }))
-    .pipe(gulp.dest('assets/application/css'))
+    .pipe(gulp.dest('../assets/application/css'))
 
     gulp.src('src/merchant/css/*.css')
     .pipe(minifyCSS())
@@ -66,7 +66,7 @@ gulp.task('min-css-export-all', function(cb){
         path.basename += "";
         path.extname = ".min.css";
       }))
-    .pipe(gulp.dest('assets/merchant/css'))
+    .pipe(gulp.dest('../assets/merchant/css'))
 
     gulp.src('src/admin/css/*.css')
     .pipe(minifyCSS())
@@ -76,7 +76,7 @@ gulp.task('min-css-export-all', function(cb){
         path.basename += "";
         path.extname = ".min.css";
       }))
-    .pipe(gulp.dest('assets/admin/css'))
+    .pipe(gulp.dest('../assets/admin/css'))
 
     cb();
 });
