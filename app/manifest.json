@@ -6,31 +6,31 @@
     "lang": "en",
     "icons": [
       {
-        "src": "/dev/XOmega/app/assets/public/img/icon-192x192.png",
+        "src": "/assets/public/img/icon-192x192.png",
         "type": "image/png",
         "sizes": "192x192",
         "purpose": "any maskable"
       },
       {
-        "src": "/dev/XOmega/app/assets/public/img/icon-256x256.png",
+        "src": "/assets/public/img/icon-256x256.png",
         "type": "image/png",
         "sizes": "192x192",
         "purpose": "any maskable"
       },
       {
-        "src": "/dev/XOmega/app/assets/public/img/icon-384x384.png",
+        "src": "/assets/public/img/icon-384x384.png",
         "type": "image/png",
         "sizes": "192x192",
         "purpose": "any maskable"
       },
       {
-        "src": "/dev/XOmega/app/assets/public/img/icon-512x512.png",
+        "src": "/assets/public/img/icon-512x512.png",
         "type": "image/png",
         "sizes": "512x512",
         "purpose": "any maskable"
       }
     ],
-    "start_url": "/dev/XOmega/app/",
+    "start_url": "/",
     "background_color": "#3367D6",
     "display": "standalone",
     "orientation": "natural",
