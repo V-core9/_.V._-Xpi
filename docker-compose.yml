@@ -1,0 +1,51 @@
+version: "3.2"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: omega_app
+    volumes:
+      - ./app:/var/www/html/
+    ports:
+      - "8080:80"
+    container_name: omega_app
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: omega_api
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_DB=test_db
+    volumes:
+      - ./api:/var/www/html/
+    ports:
+      - "8081:80"
+    container_name: omega_api
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_DATABASE=test_db
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    container_name: mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    depends_on:
+      - mysql
+    ports:
+      - "8082:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    volumes:
+      - /sessions
+    container_name: phpmyadmin
+volumes:
+  mysql_volume:
