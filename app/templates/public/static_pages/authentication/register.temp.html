@@ -37,6 +37,7 @@
 	
 		// submit form data to api
 		$.ajax({
+			crossDomain: true,
 			url:  frontConfig.apiUrl + "users/create_user.php",
 			type : "POST",
 			contentType : 'application/json',
@@ -54,7 +55,7 @@
 				//$('#response').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
 								
 				toastr.error("x", "Users Module - Register");
-			}
+			}	
 		});
 		return false;
 	});

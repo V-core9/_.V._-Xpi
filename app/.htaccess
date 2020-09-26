@@ -182,4 +182,4 @@ Header set Cache-Control "max-age=7200, must-revalidate"
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ /dev/XOmega/app/index.html [L,QSA]
+RewriteRule ^.*$ /index.html [L,QSA]
