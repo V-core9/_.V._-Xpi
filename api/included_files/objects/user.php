@@ -198,9 +198,7 @@ class User{
         }     
     }
 
-    // get user row/settings
-    public function get_admin_all_users(){
-
+    private function get_number_of_users(){
         $query = "SELECT count(*) FROM ". $this->table_name ;
         
         // prepare the query
@@ -210,7 +208,14 @@ class User{
         $stmt->execute();
 
         // get number of rows
-        $num = $stmt->fetchColumn();
+        return $stmt->fetchColumn();
+    }
+
+    // get user row/settings
+    public function get_admin_all_users(){
+
+        // get number of rows
+        $num = $this->get_number_of_users();
 
         // if account settings exists, assign values to object properties for easy access and use for php sessions
         if($num>0){
@@ -226,12 +231,43 @@ class User{
             return false;
         }     
     }
+
+    // get all users admin listing
+    public function get_admin_list_users($perPage = '50', $currentPage = '1'){
+
+        $query = "SELECT * FROM ". $this->table_name ." LIMIT ". $perPage*($currentPage-1).",".$perPage;
+        
+        // prepare the query
+        $stmt = $this->conn->prepare( $query );
+
+        // execute the query
+        $stmt->execute();
+
+        // get number of rows
+        $num = new stdClass();
+        $num->list = $stmt->fetchAll();
+        $num->allUsersNum = $this->get_number_of_users();
+
+        // if account settings exists, assign values to object properties for easy access and use for php sessions
+        if($num->list>0){
+     
+            $this->user_list     = $num;
+            // get record details / values
+            //$row = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+            // return true because account setting exists in the database
+            return true;
+        } else {
+            // return false if account setting does not exist in the database
+            return false;
+        }     
+    }
     // install table
     function install(){
 
         // install query
         $query = "CREATE TABLE users (
-            id int NOT NULL AUTO_INCREMENT, 
+            id bigint NOT NULL AUTO_INCREMENT, 
             username varchar(255) NULL UNIQUE,
             firstname varchar(255) NOT NULL,
             lastname varchar(255) NOT NULL, 

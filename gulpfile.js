@@ -112,7 +112,7 @@ gulp.task('watch', function(){
 
 
 gulp.task('copy', function (cb) {
-  gulp.src(['node_modules/@fortawesome/**/*','node_modules/bootstrap/**/*','node_modules/bootstrap-colorpicker/**/*','node_modules/sweetalert2/**/*','node_modules/toastr/**/*','node_modules/popper.js/**/*','node_modules/jquery/**/*'], {base: '.'}).pipe(gulp.dest('app/assets'));
+  gulp.src(['node_modules/@fortawesome/**/*','node_modules/bootstrap/**/*','node_modules/bootstrap-colorpicker/**/*','node_modules/sweetalert2/**/*','node_modules/toastr/**/*','node_modules/popper.js/**/*','node_modules/jquery/**/*'], {base: 'node_modules'}).pipe(gulp.dest('app/assets/node_modules/'));
 
   cb();
 });
