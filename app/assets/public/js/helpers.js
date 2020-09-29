@@ -158,3 +158,24 @@ History.navigateToPath = function(pathname) {
 // END 7. Click Prevention Function
 
 
+// 8. Load script function
+//   -input [url] -> url of the file to load
+//      will prepend frontConfig.appUrl to [url]
+function omegaLoadScript(url, jsId = ""){
+    if (document.getElementById(jsId) !== null){
+        document.getElementById(jsId).remove()
+    };
+    // DOM: Create the script element
+    var jsElm = document.createElement("script");
+    // set the type attribute
+    jsElm.type = "application/javascript";
+    // make the script element load file
+    jsElm.src = frontConfig.appUrl+url;
+    // add id if it has
+    if (jsId != ""){
+        jsElm.setAttribute("id", jsId);
+    }
+    // finally insert the element to the body element in order to load the script
+    document.getElementById('applicationScripts').appendChild(jsElm);
+}
+// END 8. Load script

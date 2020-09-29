@@ -262,6 +262,39 @@ class User{
             return false;
         }     
     }
+    // delete user
+    function delete(){
+        
+        // query to check if email exists
+        $query = "DELETE FROM " . $this->table_name . "
+                WHERE id = " . $this->delete_id ;
+     
+        // prepare the query
+        $stmt = $this->conn->prepare( $query );
+     
+        // sanitize
+        $this->email=htmlspecialchars(strip_tags($this->email));
+     
+        // bind given email value
+        $stmt->bindParam(1, $this->email);
+     
+        // execute the query
+        $stmt->execute();
+     
+        // get number of rows
+        $num = $stmt->rowCount();
+     
+        // if email exists, assign values to object properties for easy access and use for php sessions
+        if($num>0){
+     
+            // return true because email exists in the database
+            return true;
+        }
+     
+        // return false if email does not exist in the database
+        return false;
+    }
+
     // install table
     function install(){
 

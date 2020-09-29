@@ -1,4 +1,4 @@
-// VERSION: 1.0.67
+// VERSION: 1.0.12
 
 var appLocation = '/dev/XOmega/app/';
 var CACHE_NAME = 'offline-form';
