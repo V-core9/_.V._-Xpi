@@ -197,6 +197,9 @@ function showAdminDashboardPage(){
     // validate jwt to verify access
     var jwt = getCookie('jwt');
     $.post( frontConfig.apiUrl + "admin/dashboard/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+        omegaLoadScript("assets/admin/js/helpers.js", "adminHelpersJS")
+        omegaLoadScript("assets/admin/js/main.js", "adminMainJS")
+        omegaLoadScript("assets/admin/js/navigation.js", "adminNavigationJS")
         $("#content").load("templates/admin/dashboard/index.temp.html");
         history.pushState(null, 'Admin Dashboard', frontConfig.appUrl+'admin-dashboard')
     })
@@ -228,6 +231,6 @@ function showLoggedOutPage(){
             'Something went wrong, please try again!',
             'error'
             )
-            showLoggedOutMenu
+            showLoggedOutMenu();
     }
 }

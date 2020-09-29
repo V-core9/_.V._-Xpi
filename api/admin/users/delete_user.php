@@ -24,8 +24,8 @@ $db = $database->getConnection();
  
 // instantiate user object
 $user = new User($db);
-
-/// get posted data
+ 
+// get posted data
 $data = json_decode(file_get_contents("php://input"));
  
 // get jwt
@@ -36,36 +36,63 @@ if($jwt){
  
     // if decode succeed, show user details
     try {
+ 
         // decode jwt
         $decoded = JWT::decode($jwt, $key, array('HS256'));
-
-		$user->id = $decoded->data->id;
+ 
+        // set user property values
+        $user->delete_id = $data->id;
+        $user->id = $decoded->data->id; 
         
         if ($decoded->data->user_type  == 'admin'){
+		// create the product
+            $user->get_account_settins();
             
-            $perPage = (isset($_COOKIE['perPage']) && is_numeric($_COOKIE['perPage'])) ? $_COOKIE['perPage'] : '50';
-            $currentPage = (isset($_COOKIE['currentPage']) && is_numeric($_COOKIE['currentPage'])) ? $_COOKIE['currentPage'] : '1';
-
-            if ($user->get_admin_list_users($perPage, $currentPage)){
+            $token = array(
+            "iss" => $iss,
+            "aud" => $aud,
+            "iat" => $iat,
+            "exp" => $exp,
+            "nbf" => $nbf,
+            "data" => array(
+                "id" => $user->id,
+                "firstname" => $user->firstname,
+                "lastname" => $user->lastname,
+                "email" => $user->email,
+                "user_type" => $user->user_type,
+            )
+            );
+            $jwt = JWT::encode($token, $key);
+            
+            if($user->delete()){
+                // we need to re-generate jwt because user details might be different
                 // set response code
                 http_response_code(200);
                 
-                // show user details
-                echo json_encode(array(
-                    "message" => "Access granted.",
-                    "data" => $user->user_list
-                ));
-            } else {
-                // set response code
-                http_response_code(404);
-    
-                // show user details
-                echo json_encode(array(
-                    "message" => "Missing Account Settings."
-                ));
+                // response in json format
+                echo json_encode(
+                        array(
+                            "message" => "User was deleted.",
+                            "jwt" => $jwt,
+                        )
+                    );
             }
-
-        } else {
+            
+            // message if unable to update user
+            else{
+                // set response code
+                http_response_code(401);
+                
+                // response in json format
+                echo json_encode(
+                        array(
+                            "message" => "Unable to delete user.",
+                            "jwt" => $jwt,
+                        )
+                    );
+            
+            }
+        }  else {
 
             // set response code
             http_response_code(401);
@@ -77,7 +104,6 @@ if($jwt){
             ));
 
         }
-
     }
  
     // if decode fails, it means jwt is invalid
@@ -86,14 +112,14 @@ if($jwt){
 	    // set response code
 	    http_response_code(401);
 	 
-	    // tell the user access denied  & show error message
+	    // show error message
 	    echo json_encode(array(
 	        "message" => "Access denied.",
 	        "error" => $e->getMessage()
 	    ));
 	}
 }
- 
+
 // show error message if jwt is empty
 else{
  
