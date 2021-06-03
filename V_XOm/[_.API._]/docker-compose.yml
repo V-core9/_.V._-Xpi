@@ -5,9 +5,9 @@ services:
     container_name: ${PROJECT_NAME}_xom
     volumes:
       - ./addon_files/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./PUBLIC_XOMAPI:/var/www/html
+      - ./PUBLIC:/var/www/html
     environment:
-      - XOM_DB_NAME=${XOM_DB_NAME:-xom_v2}
+      - XOM_DB_NAME=${XOM_DB_NAME:-xom_v}
       - XOM_TABLE_PREFIX=${XOM_TABLE_PREFIX:-xom_}
       - XOM_DB_HOST=${XOM_DB_HOST:-mysql}
       - XOM_DB_USER=${XOM_DB_USER:-root}
@@ -15,25 +15,6 @@ services:
     mem_limit: 1024m
     mem_reservation: 256M
     cpus: 4
-    depends_on:
-      - mysql
-    restart: always
-
-  wordpress:
-    image: wordpress:${WORDPRESS_VERSION:-php7.4-fpm}
-    container_name: ${PROJECT_NAME}_wp
-    volumes:
-      - ./addon_files/config/wp/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./PUBLIC_WP:/var/www/html/
-    environment:
-      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME:-wordpress}
-      - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}
-      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST:-mysql}
-      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER:-root}
-      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD:-password}
-    mem_limit: 512m
-    mem_reservation: 256M
-    cpus: 1
     depends_on:
       - mysql
     restart: always
@@ -48,7 +29,12 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
       - MYSQL_USER=${MYSQL_USER:-root}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-wordpress}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-xom_v}
+      - UPLOAD_LIMIT=300M
+      - MAX_EXECUTION_TIME=9000
+      - MEMORY_LIMIT=2048
+      - PMA_CONTROLUSER=V_XOm
+      - PMA_CONTROLPASS=V_XOm
     restart: always
     ports:
       - 6000:${MYSQL_PORT}
@@ -65,12 +51,11 @@ services:
     volumes:
       - ${NGINX_CONF_DIR:-./addon_files/config/nginx}:/etc/nginx/conf.d
       - ${NGINX_LOG_DIR:-./addon_files/logs/nginx}:/var/log/nginx
-      - ${XOM_DATA_DIR:-./PUBLIC_XOMAPI}:/var/www/html
-      - ${WP_DATA_DIR:-./PUBLIC_WP}:/var/www/html/
+      - ${XOM_DATA_DIR:-./PUBLIC}:/var/www/html
       - ${SSL_CERTS_DIR:-./addon_files/certs}:/etc/letsencrypt
       - ${SSL_CERTS_DATA_DIR:-./addon_files/certs-data}:/data/letsencrypt
     depends_on:
-      - wordpress
+      - xom
     restart: always
 
   phpmyadmin:
