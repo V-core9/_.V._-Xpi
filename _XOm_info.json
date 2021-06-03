@@ -1,0 +1,15 @@
+{
+    "title": "XOm_v2",
+    "description": "Tuning an old project into something useful.",
+    "authors": {
+        "_.V._": "slavko.vuletic92@gmail.com",
+        "<_S_>": "slavko_vuletic@hotmail.com"
+    },
+    "folderInfo":   {
+        "description": "XOm_V Project Root Folder.",
+        "folders": {
+            "XOm_v1": "Original XOmega Project root moved to XOm_v1",
+            "XOm_v2": "New Reworks...lets see what we get out of it."
+        }
+    }
+}
