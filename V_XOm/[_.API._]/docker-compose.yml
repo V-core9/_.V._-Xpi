@@ -4,7 +4,7 @@ services:
     image: php:${PHP_VERSION:-7.4.19-fpm}
     container_name: ${PROJECT_NAME}_xom
     volumes:
-      - ./config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./addon_files/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./PUBLIC_XOMAPI:/var/www/html
     environment:
       - XOM_DB_NAME=${XOM_DB_NAME:-xom_v2}
@@ -19,12 +19,12 @@ services:
       - mysql
     restart: always
 
-wordpress:
+  wordpress:
     image: wordpress:${WORDPRESS_VERSION:-php7.4-fpm}
     container_name: ${PROJECT_NAME}_wp
     volumes:
-      - ./config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./PUBLIC_WP:/var/www/html/alt
+      - ./addon_files/config/wp/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./PUBLIC_WP:/var/www/html/
     environment:
       - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME:-wordpress}
       - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}
@@ -63,10 +63,10 @@ wordpress:
       - 404:80
       - 443:443
     volumes:
-      - ${NGINX_CONF_DIR:-./config/nginx}:/etc/nginx/conf.d
+      - ${NGINX_CONF_DIR:-./addon_files/config/nginx}:/etc/nginx/conf.d
       - ${NGINX_LOG_DIR:-./addon_files/logs/nginx}:/var/log/nginx
       - ${XOM_DATA_DIR:-./PUBLIC_XOMAPI}:/var/www/html
-      - ${XOM_DATA_DIR:-./PUBLIC_WP}:/var/www/html/alt
+      - ${WP_DATA_DIR:-./PUBLIC_WP}:/var/www/html/
       - ${SSL_CERTS_DIR:-./addon_files/certs}:/etc/letsencrypt
       - ${SSL_CERTS_DATA_DIR:-./addon_files/certs-data}:/data/letsencrypt
     depends_on:
