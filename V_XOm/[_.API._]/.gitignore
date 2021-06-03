@@ -120,8 +120,8 @@ mysql/
 _mysql/
 !_mysql/.gitkeep
 
-PUBLIC_XOMAPI/
-!PUBLIC_XOMAPI/.gitkeep
+PUBLIC/
+!PUBLIC/.gitkeep
 
 PUBLIC_WP/
 !PUBLIC_WP/.gitkeep

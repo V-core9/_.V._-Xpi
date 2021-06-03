@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="theme-color" content="#343a40"/>
+		<link rel="apple-touch-icon" href="assets/public/img/logo.png">
+		<link rel="icon" href="assets/public/img/logo.png">
+        <title>Omega - Rest API Authentication Example</title>
+		<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
+
+
+		<link href="assets/public/img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="assets/public/img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+		<script src="assets/public/js/sw-installer.js"></script>
+        <!-- Bootstrap 4 CSS and custom CSS -->
+		<link rel="preload" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">  
+		<link rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="preload" href="assets/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" as="style">  
+		<link rel="stylesheet" href="assets/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" />
+		<link rel="preload" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css" as="style">  
+		<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+		<link rel="stylesheet" href="assets/node_modules/sweetalert2/dist/sweetalert2.min.css">
+		
+		<link rel="stylesheet" type="text/css" href="assets/node_modules/toastr/build/toastr.min.css" />
+		<script>
+			var frontConfig = {
+				apiUrl : "http://localhost:7777/api/",
+				appUrl : "http://localhost:7777/app/"
+			}
+		</script>
+		<link rel="preload" href="assets/public/css/main.min.css" as="style">  
+		<link rel="stylesheet" href="assets/public/css/main.min.css">
+    </head>
+<body>
+<noscript>    This page requires you to have the Javascript enabled.</noscript>
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top topAppNavbar">
+    
+</nav>
+<!-- /navbar -->
+ 
+<!-- container -->
+<main role="main" class="starter-template">
+	<!-- where prompt / messages will appear -->
+	<div id="response"></div>
+
+	<!-- where main content will appear -->
+	<div id="content"></div>
+</main>
+<!-- /container -->
+ 
+<div class="notification_overlay"></div>
+
+<div id="applicationScripts">
+	<!-- jQuery & Bootstrap 4 JavaScript libraries -->
+	<script id='jQueryAppScript' src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script id='popperAppScript' src="assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script id='bootstrapAppScript' src="assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script id='bootstrapColPickAppScript' src="assets/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+	<script id='toastrAppScript' src="assets/node_modules/toastr/build/toastr.min.js"></script>
+	<script id='sweetalertAppScript' src="assets/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+	
+
+	<script id='publicHelpersJS' src="assets/public/js/helpers.js"></script>
+	<script id='publicNavigationJS' src="assets/public/js/navigation.js"></script>
+	<script id='publicMainJS' src="assets/public/js/main.js"></script>
+</div>
+</body>
+</html>
