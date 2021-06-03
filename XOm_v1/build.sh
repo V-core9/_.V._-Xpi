@@ -1,4 +1,5 @@
 
+echo "-<]so|_.XOm_v1._|so[>-"
 echo ""
 echo "XOm_v1-Root npm install"
 npm install
@@ -26,6 +27,6 @@ echo "Exiting in (10s).........."
 sleep 5
 echo "Exiting in (5s)....."
 sleep 5
-echo "<]|_.XOm_v1._|[>"
+echo "-<]eo|_.XOm_v1._|eo[>-"
 sleep 1
 exit 1
