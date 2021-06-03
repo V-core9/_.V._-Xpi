@@ -8,6 +8,7 @@
     "folderInfo":   {
         "description": "XOm_V Project Root Folder.",
         "folders": {
+            "[_.V._]": "Personal DEV Folder.",
             "XOm_v1": "Original XOmega Project root moved to XOm_v1",
             "XOm_v2": "New Reworks...lets see what we get out of it."
         }
