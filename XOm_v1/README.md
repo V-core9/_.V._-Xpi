@@ -79,7 +79,7 @@ With request body data
 
 	{
     	"firstname" : "yeaUser",
-    	"lastname" : "Ilic",
+    	"lastname" : "yeaMailDomain",
     	"email" : "yeaUser@yeaMailDomain.com",
     	"password" : "555"
 	}
