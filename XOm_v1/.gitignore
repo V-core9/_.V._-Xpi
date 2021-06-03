@@ -1,0 +1,3 @@
+node_modules
+wep_app/app/assets/node_modules/*
+wep_app/api/included_files/vendor/*

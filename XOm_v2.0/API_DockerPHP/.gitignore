@@ -121,15 +121,3 @@ _mysql/
 PUBLIC/
 !PUBLIC/.gitkeep
 package-lock.json
-
-
-
-
-#############
-# XOm_v1
-
-XOm_v1/node_modules
-XOm_v1/app/assets/node_modules
-
-
-########
