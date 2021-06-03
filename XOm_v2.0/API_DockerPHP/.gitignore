@@ -115,9 +115,15 @@ addon_files/logs/*
 #_config/nginx/
 !.env_example
 !nginx/default*
+
 mysql/
 _mysql/
 !_mysql/.gitkeep
-PUBLIC/
-!PUBLIC/.gitkeep
+
+PUBLIC_XOMAPI/
+!PUBLIC_XOMAPI/.gitkeep
+
+PUBLIC_WP/
+!PUBLIC_WP/.gitkeep
+
 package-lock.json
