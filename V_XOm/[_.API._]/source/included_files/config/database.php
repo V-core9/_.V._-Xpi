@@ -3,7 +3,7 @@
 class Database{
 
 	// specify your own database credentials
-	private $host = "localhost:6000";
+	private $host = "localhost:3306";
 	private $db_name = "xomdb";
 	private $username = "root";
 	private $password = "password";

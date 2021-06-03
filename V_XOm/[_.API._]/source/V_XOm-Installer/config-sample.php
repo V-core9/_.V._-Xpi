@@ -15,7 +15,7 @@ class Database{
 		$this->conn = null;
 
 		try{
-			$this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+			$this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
 		}catch(\DOException $e){
 			throw new \PDOException($e->getMessage(), (int)$e->getCode());
 		}
