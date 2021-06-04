@@ -26,7 +26,6 @@ sass --watch src/scss:src/css</br>
 npm install gulp gulp-concat gulp-minify-css gulp-autoprefixer gulp-rename gulp-sass toastr bootstrap-colorpicker popper.js@1.14.3 bootstrap@4.x.x jquery particles.js @iconscout/unicons @fortawesome/fontawesome-free sweetalert2
 
 # Run npm installs for gulp to work
-npm install sweetalert2</br>
 npm install gulp</br>
 npm install gulp-concat</br>
 npm install gulp-minify-css</br>
@@ -35,15 +34,17 @@ npm install gulp-rename</br>
 npm install gulp-sass</br>
 
 # Also few frontend libraries
-npm install toastr</br>
-npm install bootstrap-colorpicker</br>
-npm install popper.js@1.14.3</br>
-npm install bootstrap@4.x.x</br>
-npm install jquery</br>
-npm install particles.js</br>
-npm install @iconscout/unicons</br>
-npm install @fortawesome/fontawesome-free<br>
-npm install sweetalert2
+
+npm install toastr  
+npm install bootstrap-colorpicker  
+npm install popper.js@1.14.3  
+npm install bootstrap@4.x.x  
+npm install jquery  
+npm install particles.js  
+npm install @iconscout/unicons  
+npm install @fortawesome/fontawesome-free  
+npm install sweetalert2  
+
 
 # So you can run "gulp" command in root and have .min.css file(s) exported
 gulp min-css-export-single-file</br>

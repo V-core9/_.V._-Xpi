@@ -3,10 +3,10 @@
 class Database{
 
 	// specify your own database credentials
-	private $host = "localhost";
-	private $db_name = "xomega_1";
-	private $username = "xomega_1";
-	private $password = "xomega_1";
+	private $host = "DemoName_mysql:3306";
+	private $db_name = "xomdb";
+	private $username = "root";
+	private $password = "password";
 	public $con;
 
 	// get the database connection

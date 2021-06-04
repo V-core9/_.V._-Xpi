@@ -14,7 +14,7 @@ services:
       - XOM_DB_PASSWORD=${XOM_DB_PASSWORD:-password}
     mem_limit: 1024m
     mem_reservation: 256M
-    cpus: 4
+    cpus: 2
     depends_on:
       - mysql
     restart: always
@@ -22,6 +22,9 @@ services:
   mysql:
     image: mariadb:${MARIADB_VERSION:-latest}
     container_name: ${PROJECT_NAME}_mysql
+    mem_limit: 1536m
+    mem_reservation: 256M
+    cpus: 2
     volumes:
       - ./mysql:/var/lib/mysql
       - ./addon_files/backup:/backup
