@@ -1,6 +1,6 @@
 {
   "title": "XOm_v2",
-  "description": "Tuning an old project into something useful.",
+  "description": "Tuning an old project into something useful... New APP and API[s] Root Folder.",
   "authors": {
     "_.V._": "slavko.vuletic92@gmail.com",
     "<_S_>": "slavko_vuletic@hotmail.com"
@@ -9,8 +9,10 @@
     "description": "XOm_V Project Root Folder.",
     "folders": {
       "[_.V._]": "Personal DEV Folder.",
-      "XOm_v1": "Original XOmega Project root moved to XOm_v1",
-      "XOm_v2": "New Reworks...lets see what we get out of it."
+      "_.XOmega._.original": "Original XOmega Project root moved to _.XOmega._.original",
+      "V_XOm": "New Reworks...lets see what we get out of it.",
+      "[_.API._]": "Original XOmega Project root moved to _.XOmega._.Original",
+      "[_.API._]": "New Reworks...lets see what we get out of it."
     }
   },
   "repository": {
