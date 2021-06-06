@@ -15,7 +15,7 @@
     "sc_": " npm run _stop_and_clean ",
     "ysc_": "  bash -c \"echo y|npm run _stop_and_clean \" ",
     "b__": " npm run _build ",
-    "_o_": " bash -c \" npm run ysc_ ; npm run b__ \" "
+    "_O_": " bash -c \" npm run ysc_ ; npm run b__ \" "
   },
   "repository": {
     "type": "git",

@@ -39,13 +39,13 @@ if (!function_exists('getenv_docker')) {
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for XOm_API */
-define( 'DB_NAME', getenv_docker('XOM_API_DB_NAME', 'XOm_aPI') );
+define( 'DB_NAME', getenv_docker('XOM_DB_NAME', 'XOm_aPI') );
 
 /** MySQL database username */
-define( 'DB_USER', getenv_docker('XOM_API_DB_USER', 'example username') );
+define( 'DB_USER', getenv_docker('XOM_DB_USER', 'example username') );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', getenv_docker('XOM_API_DB_PASSWORD', 'example password') );
+define( 'DB_PASSWORD', getenv_docker('XOM_DB_PASSWORD', 'example password') );
 
 /**
  * Docker image fallback values above are sourced from the official XOm_API installation wizard:
@@ -54,13 +54,13 @@ define( 'DB_PASSWORD', getenv_docker('XOM_API_DB_PASSWORD', 'example password') 
  */
 
 /** MySQL hostname */
-define( 'DB_HOST', getenv_docker('XOM_API_DB_HOST', 'mysql') );
+define( 'DB_HOST', getenv_docker('XOM_DB_HOST', 'mysql') );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', getenv_docker('XOM_API_DB_CHARSET', 'utf8') );
+define( 'DB_CHARSET', getenv_docker('XOM_DB_CHARSET', 'utf8') );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', getenv_docker('XOM_API_DB_COLLATE', '') );
+define( 'DB_COLLATE', getenv_docker('XOM_DB_COLLATE', '') );
 
 /**#@+
  * Authentication unique keys and salts.
@@ -91,7 +91,7 @@ define( 'NONCE_SALT',       getenv_docker('XOM_API_NONCE_SALT',       '55063a40b
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = getenv_docker('XOM_API_TABLE_PREFIX', 'wp_');
+$table_prefix = getenv_docker('XOM_TABLE_PREFIX', 'xom_');
 
 /**
  * For developers: XOm_API debugging mode.
@@ -105,7 +105,7 @@ $table_prefix = getenv_docker('XOM_API_TABLE_PREFIX', 'wp_');
  *
  * @link ####
  */
-define( 'XOPI_DEBUG', !!getenv_docker('XOM_API_DEBUG', '') );
+define( 'XOM_DEBUG', !!getenv_docker('XOM_API_DEBUG', '') );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
@@ -130,4 +130,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** Sets up XOm_API vars and included files. */
-require_once ABSPATH . 'settings.php';
+//require_once ABSPATH . 'settings.php';
+
+echo DB_NAME . "<br>";
+echo DB_USER . "<br>";
+echo DB_PASSWORD . "<br>";
+echo DB_HOST . "<br>";
+echo DB_CHARSET . "<br>";
+echo DB_COLLATE . "<br>";

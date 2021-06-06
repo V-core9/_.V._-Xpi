@@ -5,6 +5,7 @@ services:
     container_name: ${PROJECT_NAME}_xom
     volumes:
       - ./system/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./system/config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./PUBLIC:/var/www/html
     environment:
       - XOM_DB_NAME=${XOM_DB_NAME:-xom_v}
@@ -70,6 +71,7 @@ services:
       PMA_HOST: ${PROJECT_NAME}_mysql
       PMA_PORT: ${MYSQL_PORT}
       PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 300M
     links:
       - mysql
 
