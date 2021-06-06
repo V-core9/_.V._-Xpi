@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "342ab8fe-cfbb-4527-931a-36bf5be07043",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ROOT_API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:404/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/users/all.php",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:404/admin/users/all.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						"admin",
+						"users",
+						"all.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/create_user.php",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"firstname\" : \"yeaUser\",\r\n\t\"lastname\" : \"yeaMailDomain\",\r\n\t\"email\" : \"yeaUser@yeaMailDomain.com\",\r\n\t\"password\" : \"555\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:404/users/create_user.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						"users",
+						"create_user.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/login.php",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\" : \"yeaUser@yeaMailDomain.com\",\r\n\"password\" : \"555\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:404/users/login.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						"users",
+						"login.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/validate_token.php",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvIiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwODBcLyIsImlhdCI6MTYyMzAyMDY5MSwiZXhwIjoxNjIzMDIxMjkxLCJuYmYiOjE2MjMwMjA2OTEsImRhdGEiOnsiaWQiOiI1MzUwMDEiLCJmaXJzdG5hbWUiOiJ5ZWFVc2VyIiwibGFzdG5hbWUiOiJ5ZWFNYWlsRG9tYWluIiwiZW1haWwiOiJ5ZWFVc2VyQHllYU1haWxEb21haW4uY29tIiwidXNlcl90eXBlIjpudWxsfX0.vmRTw0BAQIGVP2F0g8xtQAY16yJGyNfEP1EbeAjo5Og\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:404/users/validate_token.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						"users",
+						"validate_token.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/update_user.php",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"MikiYEA\",\r\n    \"firstname\" : \"yeaUser\",\r\n    \"lastname\" : \"Vuletic\",\r\n    \"email\" : \"yeaUser@yeaMailDomain.com\",\r\n    \"password\" : \"555\",\r\n    \"main_color\" : \"red\",\r\n\t\"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MFwvIiwiYXVkIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwODBcLyIsImlhdCI6MTYyMzAyMDY5MSwiZXhwIjoxNjIzMDIxMjkxLCJuYmYiOjE2MjMwMjA2OTEsImRhdGEiOnsiaWQiOiI1MzUwMDEiLCJmaXJzdG5hbWUiOiJ5ZWFVc2VyIiwibGFzdG5hbWUiOiJ5ZWFNYWlsRG9tYWluIiwiZW1haWwiOiJ5ZWFVc2VyQHllYU1haWxEb21haW4uY29tIiwidXNlcl90eXBlIjpudWxsfX0.vmRTw0BAQIGVP2F0g8xtQAY16yJGyNfEP1EbeAjo5Og\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:404/users/update_user.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "404",
+					"path": [
+						"users",
+						"update_user.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
