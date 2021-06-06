@@ -89,7 +89,7 @@ services:
       - CRON_TIME=0 0 * * *
       - MYSQL_NAME=${PROJECT_NAME}_mysql
       - MYSQL_PORT=${MYSQL_PORT}
-      - TIMEOUT=10s
+      - TIMEOUT=100s
       - INIT_BACKUP=1
       - MAX_BACKUPS=15
       - GZIP_LEVEL=9
