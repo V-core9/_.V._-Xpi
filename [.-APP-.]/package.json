@@ -1,0 +1,13 @@
+{
+  "name": "V_XOm_APP",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "_BUILD_APP_": "echo \"I WILL BUILD THE APP..\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

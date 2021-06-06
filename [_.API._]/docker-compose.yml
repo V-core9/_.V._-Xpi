@@ -1,0 +1,93 @@
+version: "3.6"
+services:
+  xom:
+    image: php:${PHP_VERSION:-7.4.19-fpm}
+    container_name: ${PROJECT_NAME}_xom
+    volumes:
+      - ./addon_files/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./PUBLIC:/var/www/html
+    environment:
+      - XOM_DB_NAME=${XOM_DB_NAME:-xom_v}
+      - XOM_TABLE_PREFIX=${XOM_TABLE_PREFIX:-xom_}
+      - XOM_DB_HOST=${XOM_DB_HOST:-mysql}
+      - XOM_DB_USER=${XOM_DB_USER:-root}
+      - XOM_DB_PASSWORD=${XOM_DB_PASSWORD:-password}
+    mem_limit: 1024m
+    mem_reservation: 256M
+    cpus: 4
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mariadb:${MARIADB_VERSION:-latest}
+    container_name: ${PROJECT_NAME}_mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./addon_files/backup:/backup
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_USER=${MYSQL_USER:-root}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-xom_v}
+      - UPLOAD_LIMIT=300M
+      - MAX_EXECUTION_TIME=9000
+      - MEMORY_LIMIT=2048
+      - PMA_CONTROLUSER=V_XOm
+      - PMA_CONTROLPASS=V_XOm
+    restart: always
+    ports:
+      - 6000:${MYSQL_PORT}
+
+  nginx:
+    image: nginx:${NGINX_VERSION:-latest}
+    container_name: ${PROJECT_NAME}_nginx
+    mem_limit: 1536m
+    mem_reservation: 256M
+    cpus: 2
+    ports:
+      - 404:80
+      - 443:443
+    volumes:
+      - ${NGINX_CONF_DIR:-./addon_files/config/nginx}:/etc/nginx/conf.d
+      - ${NGINX_LOG_DIR:-./addon_files/logs/nginx}:/var/log/nginx
+      - ${XOM_DATA_DIR:-./PUBLIC}:/var/www/html
+      - ${SSL_CERTS_DIR:-./addon_files/certs}:/etc/letsencrypt
+      - ${SSL_CERTS_DATA_DIR:-./addon_files/certs-data}:/data/letsencrypt
+    depends_on:
+      - xom
+    restart: always
+
+  phpmyadmin:
+    container_name: ${PROJECT_NAME}_phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+    environment:
+      PMA_HOST: ${PROJECT_NAME}_mysql
+      PMA_PORT: ${MYSQL_PORT}
+      PMA_ARBITRARY: 1
+    links:
+      - mysql
+
+  mysql-cron-backup:
+    container_name: ${PROJECT_NAME}_bckup
+    image: fradelg/mysql-cron-backup
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    volumes:
+      - ./addon_files/backup:/backup
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASS=password
+      - CRON_TIME=0 0 * * *
+      - MYSQL_NAME=${PROJECT_NAME}_mysql
+      - MYSQL_PORT=${MYSQL_PORT}
+      - TIMEOUT=10s
+      - INIT_BACKUP=1
+      - MAX_BACKUPS=15
+      - GZIP_LEVEL=9
