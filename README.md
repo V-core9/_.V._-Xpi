@@ -1,0 +1,6 @@
+# V_XOm
+
+Docker/xampp portable, Nginx, PHP-7.4-FPM, MySQL, phpMyAdmin, JWT, PWA,...
+
+_!.!_[NOTE:>> MOVED README TO BE GENERATED LATER FROM CUSTOM FILES THAT ARE ACTUALLY JSON ]_!.!_
+.....Look for _xInf file in any folder and it can contain usefull data like what to run and do...
