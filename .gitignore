@@ -106,12 +106,12 @@ dist
 
 !.env*
 .idea/
-addon_files/certs/*
-addon_files/certs-data/*
-addon_files/logs/*
-!addon_files/certs/.gitkeep
-!addon_files/certs-data/.gitkeep
-!addon_files/logs/.gitkeep
+system/certs/*
+system/certs-data/*
+system/logs/*
+!system/certs/.gitkeep
+!system/certs-data/.gitkeep
+!system/logs/.gitkeep
 #_config/nginx/
 !.env_example
 !nginx/default*
@@ -129,12 +129,12 @@ PUBLIC_WP/
 package-lock.json
 
 
-addon_files/certs/*
-addon_files/certs-data/*
-addon_files/logs/*
-!addon_files/certs/.gitkeep
-!addon_files/certs-data/.gitkeep
-!addon_files/logs/.gitkeep
+system/certs/*
+system/certs-data/*
+system/logs/*
+!system/certs/.gitkeep
+!system/certs-data/.gitkeep
+!system/logs/.gitkeep
 #_config/nginx/
 !.env_example
 !nginx/default*

@@ -29,13 +29,13 @@ Stop and remove/Clean project :
 ## Additional Information: 
    
 Project folders:   
-- [addon_files]   
+- [system]   
 - [config]   
 - [source]   
 
 Additional files:   
-- [ReadMe.md](https://github.com/MyUserNameIsMyUserName/XOmega.git/blob/main_index/addon_files/README.md)   
-- [Licence](https://github.com/MyUserNameIsMyUserName/XOmega.git/blob/main_index/addon_files/LICENSE)   
+- [ReadMe.md](https://github.com/MyUserNameIsMyUserName/XOmega.git/blob/main_index/system/README.md)   
+- [Licence](https://github.com/MyUserNameIsMyUserName/XOmega.git/blob/main_index/system/LICENSE)   
     
 _Just trying to keep the root folder clear of most of the stuff_ 
 
@@ -69,7 +69,7 @@ _Just trying to keep the root folder clear of most of the stuff_
 2.  \_create_folders  
     **Description:** Feel free to fill in and help out with these, next people joining can continue the work easier and even faster fill in these.
 
-            "_create_folders": " bash -c \" cd addon_files ; mkdir certs ; mkdir certs-data ; mkdir logs ; cd .. ; mkdir  mysql ; mkdir PUBLIC ; \" ",
+            "_create_folders": " bash -c \" cd system ; mkdir certs ; mkdir certs-data ; mkdir logs ; cd .. ; mkdir  mysql ; mkdir PUBLIC ; \" ",
 
 3.  \_build_containers  
     **Description:** Building containers
@@ -79,7 +79,7 @@ _Just trying to keep the root folder clear of most of the stuff_
 4.  \_stop_and_clean  
     **Description:** Same as title say/
 
-            "_stop_and_clean": " bash ./addon_files/stop_and_clean.sh ",
+            "_stop_and_clean": " bash ./system/stop_and_clean.sh ",
 
 5.  \_build  
     **Description:** Creates folders and containers.

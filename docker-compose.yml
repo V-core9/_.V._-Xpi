@@ -4,7 +4,7 @@ services:
     image: php:${PHP_VERSION:-7.4.19-fpm}
     container_name: ${PROJECT_NAME}_xom
     volumes:
-      - ./addon_files/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./system/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./PUBLIC:/var/www/html
     environment:
       - XOM_DB_NAME=${XOM_DB_NAME:-xom_v}
@@ -24,7 +24,7 @@ services:
     container_name: ${PROJECT_NAME}_mysql
     volumes:
       - ./mysql:/var/lib/mysql
-      - ./addon_files/backup:/backup
+      - ./system/backup:/backup
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
       - MYSQL_USER=${MYSQL_USER:-root}
@@ -49,11 +49,11 @@ services:
       - 404:80
       - 443:443
     volumes:
-      - ${NGINX_CONF_DIR:-./addon_files/config/nginx}:/etc/nginx/conf.d
-      - ${NGINX_LOG_DIR:-./addon_files/logs/nginx}:/var/log/nginx
+      - ${NGINX_CONF_DIR:-./system/config/nginx}:/etc/nginx/conf.d
+      - ${NGINX_LOG_DIR:-./system/logs/nginx}:/var/log/nginx
       - ${XOM_DATA_DIR:-./PUBLIC}:/var/www/html
-      - ${SSL_CERTS_DIR:-./addon_files/certs}:/etc/letsencrypt
-      - ${SSL_CERTS_DATA_DIR:-./addon_files/certs-data}:/data/letsencrypt
+      - ${SSL_CERTS_DIR:-./system/certs}:/etc/letsencrypt
+      - ${SSL_CERTS_DATA_DIR:-./system/certs-data}:/data/letsencrypt
     depends_on:
       - xom
     restart: always
@@ -80,7 +80,7 @@ services:
       - mysql
     restart: unless-stopped
     volumes:
-      - ./addon_files/backup:/backup
+      - ./system/backup:/backup
     environment:
       - MYSQL_USER=root
       - MYSQL_PASS=password
