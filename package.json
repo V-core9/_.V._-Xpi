@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": " echo \"Error: no test specified\" && exit 1 ",
-    "_create_folders": " bash -c \" cd system ; mkdir certs ; mkdir certs-data ; mkdir logs ; cd .. ; mkdir  mysql ; cp -r source PUBLIC ; cp 'system/buildAPI.sh' 'PUBLIC/' \" ; ",
+    "_create_folders": " bash -c \" cd system ; mkdir certs ; mkdir certs-data ; mkdir logs ; cd .. ; mkdir  mysql ; cp -r SOURCE PUBLIC ; cp 'system/buildAPI.sh' 'PUBLIC/' \" ; ",
     "_install_node_items": " bash -c \" npm install -g fast-cli open-cli systeminfo node-notifier-cli node-notifier \" && bash -c \" npm install nightwatch geckodriver chromedriver --save \" ",
     "_build_containers": " docker-compose up -d ",
     "_amplify_nginx_": "docker stop DemoName_nginx ; docker run --name DemoName_nginx -e API_KEY=f51fd0a3ee355133684f5a6c489514d2 -e AMPLIFY_IMAGENAME=DemoName_nginx77 -d nginx-amplify",
