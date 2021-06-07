@@ -131,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<br>";
     echo "Host: ".$host;
     echo "<br>";
+
   }
   echo '</div>';
 
@@ -290,5 +291,147 @@ function replaceValues($configSample, $name, $username, $password, $host) {
     margin-top: 20px;
   }
 </style>
+
+
+<!-- WW FETCHER....FAKE DATA TESTER -->
+  <script id="wwFetchFuncRegister" type="javascript/worker">
+    
+    onmessage = function(e) {       
+      var userInfo = e.data.split('#') ? e.data.split("#")[1] : "empty";
+      var funcName = ( userInfo === "empty" ) ? e.data : e.data.split("#")[0]; 
+      if ((funcName === 'wwFetchFuncRegister') && (userInfo !== "empty")){
+        //webWorkerFetchFunc(userInfo); 
+        //postData( userInfo ).then(data => { console.log('DATA:> '+ data) });
+        postData( userInfo );
+      }
+    };
+
+
+  
+    // Example POST method implementation:
+    async function postData( data = {}) { 
+      
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify(data);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: data,
+        redirect: 'follow'
+      };
+
+      fetch("http://localhost:404/users/create_user.php", requestOptions)
+        //.then(response => response.text())
+        .then(result => postMessage({"responseType":"wwFetchFuncGotResponse"} ))
+        .catch(error => console.log('error', error));
+    }
+
+  </script>
+
+<!-- WW FETCHER....FAKE DATA TESTER -->
+  <script id="wwFetchFuncFakePerson" type="javascript/worker">
+    importScripts('https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js');
+
+    var reqNumGen = 1;
+    var maxAtOnce = 5;
+    var currentlyWaiting = 0;
+    
+    onmessage = function(e) {    
+      var num = e.data.split('#') ? e.data.split("#")[1] : "empty";
+      var funcName = ( num === "empty" ) ? e.data : e.data.split("#")[0];
+
+      num = (num === "empty") ? 5 : parseInt( num ) ;
+
+      if (funcName === 'wwFetchFuncFakePersonAction'){
+        webWorkerFetchFuncFakePerson(num); 
+      };
+      
+      if (funcName === 'wwFetchFuncRegisterDone') {
+        currentlyWaiting--;
+      };
+    };
+
+    async function webWorkerFetchFuncFakePerson(num = 10) {
+      var counter = 0;
+      var i = setInterval(function(){
+        if (currentlyWaiting < maxAtOnce ){
+        //  console.log("NOT WAITING>  "+currentlyWaiting);
+          var fakeFName = faker.name.firstName();
+          var fakeLName = faker.name.lastName();
+          var fakeEmail = faker.internet.email();
+          var fakePass = "Pass123";
+          postMessage({firstname : faker.name.firstName(), lastname : faker.name.lastName(), email : faker.internet.email(), password : fakePass });
+
+          currentlyWaiting++;
+          counter++;
+        //  console.log("LEFT>  "+currentlyWaiting);
+          if(counter === num) {
+              clearInterval(i);
+              postMessage("FakePeopleDONE")
+          }
+        } /*else {
+          console.log(" WAITING>  "+currentlyWaiting);
+        }  */
+      }, 5 );
+    }
+  </script>
+
+
+  <script>
+  var startTime, endTime;
+
+
+    function getInlineJS() {
+      var js = document.querySelector('#wwFetchFuncRegister').textContent;
+      var blob = new Blob([js], {"type": "text\/plain"});
+      return URL.createObjectURL(blob);
+    }
+
+    function terminateWW(WebW){
+        WebW.terminate() 
+        WebW = undefined;
+    }
+
+    const ww = new Worker(getInlineJS());
+
+    ww.onmessage = function (e) {
+      wwFUser.postMessage('wwFetchFuncRegisterDone');
+    };
+
+    function getInlineJSFakeData() {
+      var js = document.querySelector('#wwFetchFuncFakePerson').textContent;
+      var blob = new Blob([js], {"type": "text\/plain"});
+      return URL.createObjectURL(blob);
+    }
+
+    const wwFUser = new Worker(getInlineJSFakeData());
+
+    wwFUser.onmessage = function (e) {
+        let msg = e.data ;
+        ww.postMessage('wwFetchFuncRegister#'+JSON.stringify( msg, false, 4));
+
+        if (msg === "FakePeopleDONE"){
+          endTime = Date.now();
+          console.info("Exec.Time: "+ (endTime-startTime))
+        }
+    };
+
+    function generateFakeUsers(num = 1){ 
+      startTime = Date.now(); 
+      wwFUser.postMessage('wwFetchFuncFakePersonAction#'+ parseInt(num));
+    }
+
+    //window.onload = function(){ 
+    //  wwFUser.postMessage('wwFetchFuncFakePersonAction#10');
+    //}
+
+  </script>
+<!-- WW FETCHER....FAKE DATA TESTER -->
+
+<div class="input_group"></div><input id="users_to_generate_num" type="number" value="50"> <button onclick="generateFakeUsers(document.getElementById('users_to_generate_num').value)">Generate Users</button></div>
+
 </body>
 </html>

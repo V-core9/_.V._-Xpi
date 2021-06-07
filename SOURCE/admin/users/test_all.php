@@ -1,6 +1,6 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: http://localhost:8080");
+header("Access-Control-Allow-Origin: http://localhost:404");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -40,7 +40,7 @@ $data = json_decode(file_get_contents("php://input"));
   //      $decoded = JWT::decode($jwt, $key, array('HS256'));
 
 //		$user->id = $decoded->data->id;
-        
+        $user->id = 1;
   //      if ($decoded->data->user_type  == 'admin'){
 
             //if ($user->get_admin_all_users()){

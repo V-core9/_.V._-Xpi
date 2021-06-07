@@ -14,8 +14,8 @@ services:
       - XOM_DB_USER=${XOM_DB_USER:-root}
       - XOM_DB_PASSWORD=${XOM_DB_PASSWORD:-password}
     mem_limit: 1024m
-    mem_reservation: 256M
-    cpus: 4
+    mem_reservation: 512M
+    cpus: 8
     depends_on:
       - mysql
     restart: always

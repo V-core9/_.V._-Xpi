@@ -145,21 +145,21 @@ CREATE TABLE users (
 );
 Start PHP Server in project root
 
-php -S localhost:8080
+php -S localhost:404
 Create user
 
-http://localhost:8080/api/create_user.php
+http://localhost:404/users/create_user.php
 With request body data
 
-{
-	"firstname" : "yeaUser",
-	"lastname" : "yeaMailDomain",
-	"email" : "yeaUser@yeaMailDomain.com",
-	"password" : "555"
-}
+    {
+        "firstname" : "yeaUser",
+        "lastname" : "yeaMailDomain",
+        "email" : "yeaUser@yeaMailDomain.com",
+        "password" : "555"
+    }
 Login user
 
-http://localhost:404/login.php
+http://localhost:404/users/login.php
 Enter in body
 
 {
@@ -168,7 +168,7 @@ Enter in body
 }
 Test token access
 
-http://localhost:404/validate_token.php
+http://localhost:404/users/validate_token.php
 Enter in request body
 
 {
