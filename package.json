@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": " echo \"Error: no test specified\" && exit 1 ",
+    "_run_setup_xampp": "bash -c \" echo 'YEAAA' | cmd.exe /c setup_xampp.bat \" ; ",
+    "_unzip_xampp": " bash -c \" unzip xampp-portable-windows-x64-7.4.19-0-VC15.zip -d xamppPW64-7.4.19  \" ",
+    "_download_xampp": " bash -c \" curl https://deac-riga.dl.sourceforge.net/project/xampp/XAMPP%20Windows/7.4.19/xampp-portable-windows-x64-7.4.19-0-VC15.zip --output xampp-portable-windows-x64-7.4.19-0-VC15.zip  \" ",
+    "_get_xampp": " bash -c \" npm run _download_xampp ; npm run _unzip_xampp ; \" ",
     "_create_folders": " bash -c \" cd system ; mkdir certs ; mkdir certs-data ; mkdir logs ; cd .. ; mkdir  mysql ; cp -r SOURCE PUBLIC ; cp 'system/build/buildAPI.sh' 'PUBLIC/' \" ; ",
     "_install_node_items": " bash -c \" npm install -g fast-cli open-cli systeminfo node-notifier-cli node-notifier \" && bash -c \" npm install nightwatch geckodriver chromedriver --save \" ",
     "_build_containers": " docker-compose up -d ",

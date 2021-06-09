@@ -145,3 +145,10 @@ PUBLIC/
 !PUBLIC/.gitkeep
 package-lock.json
 
+
+
+xampp-*
+./xampp-*
+./xamppPW64-7.4.19/
+./xamppPW64-7.4.19/*
+xamppPW64-7.4.19/
