@@ -106,12 +106,35 @@ dist
 
 !.env*
 .idea/
-addon_files/certs/*
-addon_files/certs-data/*
-addon_files/logs/*
-!addon_files/certs/.gitkeep
-!addon_files/certs-data/.gitkeep
-!addon_files/logs/.gitkeep
+system/certs/*
+system/certs-data/*
+system/logs/*
+!system/certs/.gitkeep
+!system/certs-data/.gitkeep
+!system/logs/.gitkeep
+#_config/nginx/
+!.env_example
+!nginx/default*
+
+mysql/
+_mysql/
+!_mysql/.gitkeep
+
+PUBLIC/
+!PUBLIC/.gitkeep
+
+PUBLIC_WP/
+!PUBLIC_WP/.gitkeep
+
+package-lock.json
+
+
+system/certs/*
+system/certs-data/*
+system/logs/*
+!system/certs/.gitkeep
+!system/certs-data/.gitkeep
+!system/logs/.gitkeep
 #_config/nginx/
 !.env_example
 !nginx/default*
@@ -122,14 +145,3 @@ PUBLIC/
 !PUBLIC/.gitkeep
 package-lock.json
 
-
-
-
-#############
-# XOm_v1
-
-XOm_v1/node_modules
-XOm_v1/app/assets/node_modules
-
-
-########
