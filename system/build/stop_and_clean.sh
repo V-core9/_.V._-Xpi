@@ -19,7 +19,7 @@ case ${answer:0:1} in
         echo "INFO: Pruning unused docker networks"
         docker network prune -f
         echo "INFO: Removing directories and contents (system/certs/ system/certs-data/ system/logs/ mysql/ PUBLIC/)"
-        rm -rf system/certs/ system/certs-data/ system/logs/ mysql/ PUBLIC/
+        rm -rf system/certs/ system/certs-data/ system/logs/ mysql/ PUBLIC/ node_modules/ vendor/
         echo "INFO: Done"
         exit 0;
     ;;
