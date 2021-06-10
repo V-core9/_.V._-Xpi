@@ -151,4 +151,7 @@ xampp-*
 ./xampp-*
 ./xamppPW64-7.4.19/
 ./xamppPW64-7.4.19/*
-xamppPW64-7.4.19/
+xamppPW64-7.4.19/vendor/
+vendor/
+./vendor/
+./vendor/*
