@@ -1,4 +1,6 @@
-# V_XOm
+### [_.V._]_Xript.OmegaWeb - V_XrOm
+###   
+# ⩤⮓᚜⩔≜⧌᚛⮒⩥ 
 
 Docker/xampp portable, Nginx, PHP-7.4-FPM, MySQL, phpMyAdmin, JWT, PWA,...
 
