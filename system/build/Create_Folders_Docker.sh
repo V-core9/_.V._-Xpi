@@ -23,9 +23,10 @@ echo $PWD
 mkdir  mysql 
 ls -l
 cp -r SOURCE PUBLIC 
-cp 'system/build/buildAPI.sh' 'PUBLIC/'
-cp 'system/config/.env_DevSample' 'PUBLIC/.env'
-cp 'system/config/.env_DevSample' './.env'
+cp './system/build/buildAPI.sh' './PUBLIC/'
+cp './system/config/.env_DevSample' './PUBLIC/.env'
+cp './system/config/.env_DevSample' './.env'
+cp './system/config/.htaccess_DevSample' './PUBLIC/.htaccess'
 
 echo " "
 echo "*********************************************"
