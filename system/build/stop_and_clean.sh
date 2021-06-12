@@ -20,6 +20,8 @@ case ${answer:0:1} in
         docker network prune -f
         echo "INFO: Removing directories and contents (system/certs/ system/certs-data/ system/logs/ mysql/ PUBLIC/)"
         rm -rf system/certs/ system/certs-data/ system/logs/ mysql/ PUBLIC/
+        echo "INFO: Removing .env file"
+				rm -rf .env
         echo "INFO: Done"
         exit 0;
     ;;

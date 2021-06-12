@@ -6,7 +6,7 @@
 # From Node File >>  bash -c \" npm install -g fast-cli open-cli systeminfo node-notifier-cli node-notifier \"
 echo " "
 echo "*********************************************"
-echo "|| V._.XrOm-API Node Globals Installed"
+echo "|| V._.XrOm-API Node Globals STARTING Install"
 echo "*********************************************"
 echo " "
 sleep 2s
@@ -25,7 +25,7 @@ for LINE in $LINES; do echo $(npm install -g $LINE); done
 sleep 1s
 echo " "
 echo "*********************************************"
-echo "|| V._.XrOm-API Node Globals Installed"
+echo "|| V._.XrOm-API Node Globals FINISHED Install"
 echo "*********************************************"
 echo " "
 sleep 2s
