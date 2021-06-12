@@ -3,6 +3,7 @@ const DEV__MODE = typeof DEV_MODE !== "undefined" ? true : false;
 
 const Vinstaller = {
   installStatus: null,
+	installMode: "INIT", // [can be set to  "LIVE" , "DEV" ,  "TEST"] |OR| "INIT" on start to get nextButton to trigger modal.
   prevBtnId: "prev_install_page_button",
   nextBtnId: "next_install_page_button",
   doneBtnId: "finish_install_page_button",
@@ -51,6 +52,10 @@ Vinstaller.clickPostCheck = function () {
 
 Vinstaller.nextBtnClick = function () {
   DMoD();
+	if (this.installMode === "INIT"){
+		this.selectInstallMode("LIVE");
+		showModal('NoSelectedInstallModeModal');
+	};
   if (this.installStatus == this.wizLen) {
     console.log("Cant go further--->>>");
   } else {
@@ -73,8 +78,8 @@ Vinstaller.prevBtnClick = function () {
   DMoD();
 };
 
-function btnClick(element) {
-    var targetName = element.getAttribute('id');
+Vinstaller.btnClick=(elem)=> {
+    var targetName = elem.getAttribute('id');
     switch (targetName) {
         case "next_install_page_button":
             Vinstaller.nextBtnClick();
@@ -92,6 +97,62 @@ function btnClick(element) {
     console.log(targetName);
 }
 
+
+Vinstaller.selectInstallMode=(installMode="LIVE")=>{
+	try {
+		switch (installMode) {
+			case "DEV":
+				this.installMode = "DEV";
+				break;
+		
+			case "TEST":
+				this.installMode = "TEST";
+				break;
+
+		
+			case "LIVE":
+				this.installMode = "LIVE";
+				break;
+
+			default:
+				this.installMode = "LIVE";
+				break;
+		}
+		console.info('Install Mode Selected :[ '+ this.installMode +' ]');
+		if (!document.getElementById('selected_install_mode_print_val').classList.contains(this.installMode)) {
+			document.getElementById('selected_install_mode_print_val').classList.remove("DEV");
+			document.getElementById('selected_install_mode_print_val').classList.remove("TEST");
+			document.getElementById('selected_install_mode_print_val').classList.remove("LIVE");
+			document.getElementById('selected_install_mode_print_val').classList.add(this.installMode);
+			document.getElementById('selected_install_mode_print_val').innerText = "Selected Install Mode :[ "+ this.installMode +" ]";
+
+			AppInstaller.installMode = this.installMode;
+			
+			document.querySelectorAll(".mainChoiceButtons > button").forEach(elem=>{
+				if (elem.id == this.installMode+"_install_mode_btn") {
+					elem.classList.add('selected_btn');
+				} else {
+					elem.classList.remove('selected_btn');
+				}
+				console.log(elem);
+			});
+			
+		}
+		return true;
+	} catch (error) {
+		console.warn(error);
+		return false;
+	}
+
+}
+
+buttonClick=(elem)=>{	Vinstaller.btnClick(elem); };
+
+btnClick=(elem)=>{ Vinstaller.btnClick(elem); };
+
+function selectInstallMode(installMode) {
+	return Vinstaller.selectInstallMode(installMode);
+}
 //// benchmark time start....
 var startTime = Date.now();
 // declare it for usage...
@@ -107,37 +168,3 @@ var endTime = Date.now();
 // and alert so idiot don't miss...I am talking about myself...xD
 console.info("Loop took time: " + (endTime - startTime) );
 console.log(Installer.installStatus);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
