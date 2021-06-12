@@ -11,11 +11,17 @@ echo "*********************************************"
 echo " "
 
 cd system 
+echo $PWD
 mkdir certs 
+ls -l
 mkdir certs-data 
+ls -l
 mkdir logs 
+ls -l
 cd .. 
+echo $PWD
 mkdir  mysql 
+ls -l
 cp -r SOURCE PUBLIC 
 cp 'system/build/buildAPI.sh' 'PUBLIC/'
 cp 'system/config/.env_DevSample' 'PUBLIC/.env'

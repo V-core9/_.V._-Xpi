@@ -18,7 +18,6 @@ echo " "
 #  "_build_containers": " docker-compose up -d ; docker stop $(docker ps -aq) ; ",
 
 echo $( docker-compose up -d )
-ehoc $( docker stop $(docker ps -aq) ) 
 
 sleep 1s
 echo " "
