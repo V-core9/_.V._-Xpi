@@ -84,8 +84,8 @@ services:
     volumes:
       - ./system/backup:/backup
     environment:
-      - MYSQL_USER=root
-      - MYSQL_PASS=password
+      - MYSQL_USER=${MYSQL_USER:-root}
+      - MYSQL_PASS=${MYSQL_ROOT_PASSWORD:-password}
       - CRON_TIME=0 0 * * *
       - MYSQL_NAME=${PROJECT_NAME}_mysql
       - MYSQL_PORT=${MYSQL_PORT}
