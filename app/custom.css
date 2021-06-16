@@ -1,0 +1,16 @@
+body, button, input, select, textarea {
+    font-family: Monospace, sans-serif;
+}
+main.starter-template {
+    margin-top: 57px;
+}
+#logout, #update_account, #dashboard{ display:none; }
+#home_logo i {
+    font-size: 30px;
+}
+#navbarNavAltMarkup a {
+    font-size: 18px;
+}
+.navbar-dark .navbar-nav .nav-link.current_page {
+    color: white;
+}
