@@ -1,0 +1,15 @@
+{
+  "name": "APP",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "_setup_": "echo \" SETTING UP STUFF \" ",
+    "_run_app_": "echo \" You run motherfucker! \" ",
+    "_run_dev_": "echo \" SURE WHY NOT ALL TO SEE DATA!! \" "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
