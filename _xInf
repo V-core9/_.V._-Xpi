@@ -18,3 +18,21 @@
     "url": "git+https://github.com/MyUserNameIsMyUserName/XOmega.git"
   }
 }
+{
+  "title": "XOm_v1",
+  "description": "This is basically that old project. JWT,PWA,PHP,jQuery,Bootstrap...etc.",
+  "authors": {
+    "_.V._": "slavko.vuletic92@gmail.com",
+    "<_S_>": "slavko_vuletic@hotmail.com"
+  },
+  "folderInfo": {
+    "description": "OLD Project moved here into folder called XOm_v1. Bascally this was the original project root folder and it's contents.",
+    "folders": {
+      "api": "the api code is in there custom installer...etc.",
+      "app": "WoooW....that is where you get to click stuff.",
+      "app_dev": "At the time pretty great thing, now just bunch of SCSS files.",
+      "img": "Pretty easy to understand...",
+      "node_modules": "This one will show up once you run the build."
+    }
+  }
+}
