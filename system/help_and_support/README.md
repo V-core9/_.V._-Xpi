@@ -147,10 +147,10 @@ CREATE TABLE users (
 );
 Start PHP Server in project root
 
-php -S localhost:404
+php -S localhost:4040
 Create user
 
-http://localhost:404/users/create_user.php
+http://localhost:4040/users/create_user.php
 With request body data
 
     {
@@ -161,7 +161,7 @@ With request body data
     }
 Login user
 
-http://localhost:404/users/login.php
+http://localhost:4040/users/login.php
 Enter in body
 
 {
@@ -170,7 +170,7 @@ Enter in body
 }
 Test token access
 
-http://localhost:404/users/validate_token.php
+http://localhost:4040/users/validate_token.php
 Enter in request body
 
 {
@@ -178,7 +178,7 @@ Enter in request body
 }
 Update user
 
-http://localhost:404/users/update_user.php
+http://localhost:4040/users/update_user.php
 Body has the following details
 
 {

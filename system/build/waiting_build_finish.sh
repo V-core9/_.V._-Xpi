@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-until $(curl --output /dev/null --silent --head --fail http://localhost:404/index.php); do
+until $(curl --output /dev/null --silent --head --fail http://localhost:4040/index.php); do
     printf '.'
     sleep 5
 done

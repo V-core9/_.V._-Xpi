@@ -323,7 +323,7 @@ function replaceValues($configSample, $name, $username, $password, $host) {
         redirect: 'follow'
       };
 
-      fetch("http://localhost:404/users/create_user.php", requestOptions)
+      fetch("http://localhost:4040/users/create_user.php", requestOptions)
         //.then(response => response.text())
         .then(result => postMessage({"responseType":"wwFetchFuncGotResponse"} ))
         .catch(error => console.log('error', error));

@@ -7,8 +7,8 @@ date_default_timezone_set('Europe/Zagreb');
  
 // variables used for jwt
 $key = "iwqAsWaJ0i7gkzSGe1Bo8JLYJDvkA_MGgy81P9B2Ykc";
-$iss = "http://localhost:404/";
-$aud = "http://localhost:404/";
+$iss = "http://localhost:4040/";
+$aud = "http://localhost:4040/";
 
 $iat = time();
 $exp = ($iat + 600);
