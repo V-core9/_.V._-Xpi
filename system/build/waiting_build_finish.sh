@@ -4,4 +4,4 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:4040/ind
     sleep 5
 done
 
-docker exec -it DemoName_xom bash -c " bash -c \"/var/www/html/buildAPI.sh\" ; sleep 2; echo ""; echo \"Done Setting Up PHP \" ; exit 0 ;"
+docker exec -it VnPI_v_pi bash -c " bash -c \"/var/www/html/buildAPI.sh\" ; sleep 2; echo ""; echo \"Done Setting Up PHP \" ; exit 0 ;"

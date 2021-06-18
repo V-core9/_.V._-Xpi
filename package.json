@@ -1,11 +1,11 @@
 {
-  "name": "xom_v2.api",
+  "name": "v_pi",
   "version": "1.4.7",
   "description": "Docker Nginx Php-FPM mySql phpMyAdmin Backups for XOm_v2.api [php:7.4.19-fpm]",
   "main": "index.js",
   "scripts": {
-    "_APP_": " bash -c \" npm run _APP_BUILD_ ; docker-compose up -d ; \" ",
-    "_APP_BUILD_": " bash -c \" npm install ; bash ./system/build/Install_Node_Globals.sh ;  bash ./system/build/Create_Folders_Docker.sh ; bash ./system/build/Build_Docker_Containers.sh ; bash ./system/build/waiting_build_finish.sh ; docker restart DemoName_xom ; sleep 10 ; open-cli 'http://localhost:404/_.V._Installer/index.php' ;  docker stop $(docker ps -aq) ;  echo 'DONE BUILD'\" ",
+    "_APP_": " bash -c \" npm run _APP_BUILD_ ; docker-compose up -d ; open-cli 'http://localhost:4040/index.php' ; \" ",
+    "_APP_BUILD_": " bash -c \" npm install ; bash ./system/build/Install_Node_Globals.sh ;  bash ./system/build/Create_Folders_Docker.sh ; bash ./system/build/Build_Docker_Containers.sh ; bash ./system/build/waiting_build_finish.sh ; docker restart v_pi ; sleep 10 ;  docker stop $(docker ps -aq) ;  echo 'DONE BUILD'\" ",
     "_SETUP_XAMPP_": " bash ./system/build/Handle-Xampp.sh ",
     "_DEV_": "echo 'Not yet ready[ _build_dev ]' ",
     "_DOWN_": " bash ./system/build/stop_and_clean.sh ",

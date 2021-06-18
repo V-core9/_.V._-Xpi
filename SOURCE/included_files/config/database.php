@@ -4,7 +4,7 @@ class Database{
 
 	// specify your own database credentials
 	private $host = "localhost:3306";
-	private $db_name = "xomdb";
+	private $db_name = "v_pi_db";
 	private $username = "root";
 	private $password = "password";
 	public $con;

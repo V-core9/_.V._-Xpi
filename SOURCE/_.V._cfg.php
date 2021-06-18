@@ -91,7 +91,7 @@ define( 'NONCE_SALT',       getenv_docker('VnPI_API_NONCE_SALT',       '55063a40
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = getenv_docker('VnPI_TABLE_PREFIX', 'xom_');
+$table_prefix = getenv_docker('VnPI_TABLE_PREFIX', 'v_pi_');
 
 /**
  * For developers: V_nPI debugging mode.
