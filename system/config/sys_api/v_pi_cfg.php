@@ -1,6 +1,6 @@
 <?php
 /**
- * The base configuration for XOm_API
+ * The base configuration for v_pi
  *
  * The config.php creation script uses this file during the installation.
  * You don't have to use the web site, you can copy this file to "config.php"
@@ -39,13 +39,13 @@ if (!function_exists('getenv_docker')) {
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for XOm_API */
-define( 'DB_NAME', getenv_docker('XOM_API_DB_NAME', 'XOm_aPI') );
+define( 'DB_NAME', getenv_docker('V_PI_API_DB_NAME', 'XOm_aPI') );
 
 /** MySQL database username */
-define( 'DB_USER', getenv_docker('XOM_API_DB_USER', 'example username') );
+define( 'DB_USER', getenv_docker('V_PI_API_DB_USER', 'example username') );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', getenv_docker('XOM_API_DB_PASSWORD', 'example password') );
+define( 'DB_PASSWORD', getenv_docker('V_PI_API_DB_PASSWORD', 'example password') );
 
 /**
  * Docker image fallback values above are sourced from the official XOm_API installation wizard:
@@ -54,13 +54,13 @@ define( 'DB_PASSWORD', getenv_docker('XOM_API_DB_PASSWORD', 'example password') 
  */
 
 /** MySQL hostname */
-define( 'DB_HOST', getenv_docker('XOM_API_DB_HOST', 'mysql') );
+define( 'DB_HOST', getenv_docker('V_PI_API_DB_HOST', 'mysql') );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', getenv_docker('XOM_API_DB_CHARSET', 'utf8') );
+define( 'DB_CHARSET', getenv_docker('V_PI_API_DB_CHARSET', 'utf8') );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', getenv_docker('XOM_API_DB_COLLATE', '') );
+define( 'DB_COLLATE', getenv_docker('V_PI_API_DB_COLLATE', '') );
 
 /**#@+
  * Authentication unique keys and salts.
@@ -73,14 +73,14 @@ define( 'DB_COLLATE', getenv_docker('XOM_API_DB_COLLATE', '') );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         getenv_docker('XOM_API_AUTH_KEY',         'bfb714c14afef52bc306afb3cb570eda3d8708c7') );
-define( 'SECURE_AUTH_KEY',  getenv_docker('XOM_API_SECURE_AUTH_KEY',  '3ee018717d292404f3ad56d84509d7eaec0d042e') );
-define( 'LOGGED_IN_KEY',    getenv_docker('XOM_API_LOGGED_IN_KEY',    'f11d1f31042e35521bdd125b147a9632b8f5fda5') );
-define( 'NONCE_KEY',        getenv_docker('XOM_API_NONCE_KEY',        'a173dd2787b2fbdc0f4be81b9c4afb6ca5ba8507') );
-define( 'AUTH_SALT',        getenv_docker('XOM_API_AUTH_SALT',        'e8577220d8900ddbc26305d39056edbbf4ff5391') );
-define( 'SECURE_AUTH_SALT', getenv_docker('XOM_API_SECURE_AUTH_SALT', '4f981db7e93f4ba97892d7458e44fe43c7cacabc') );
-define( 'LOGGED_IN_SALT',   getenv_docker('XOM_API_LOGGED_IN_SALT',   '272ade07a3dd782a15b4b4f5360e827049c18f46') );
-define( 'NONCE_SALT',       getenv_docker('XOM_API_NONCE_SALT',       '55063a40badf9fb6237a5db69ed35f0953f3cafb') );
+define( 'AUTH_KEY',         getenv_docker('V_PI_API_AUTH_KEY',         'bfb714c14afef52bc306afb3cb570eda3d8708c7') );
+define( 'SECURE_AUTH_KEY',  getenv_docker('V_PI_API_SECURE_AUTH_KEY',  '3ee018717d292404f3ad56d84509d7eaec0d042e') );
+define( 'LOGGED_IN_KEY',    getenv_docker('V_PI_API_LOGGED_IN_KEY',    'f11d1f31042e35521bdd125b147a9632b8f5fda5') );
+define( 'NONCE_KEY',        getenv_docker('V_PI_API_NONCE_KEY',        'a173dd2787b2fbdc0f4be81b9c4afb6ca5ba8507') );
+define( 'AUTH_SALT',        getenv_docker('V_PI_API_AUTH_SALT',        'e8577220d8900ddbc26305d39056edbbf4ff5391') );
+define( 'SECURE_AUTH_SALT', getenv_docker('V_PI_API_SECURE_AUTH_SALT', '4f981db7e93f4ba97892d7458e44fe43c7cacabc') );
+define( 'LOGGED_IN_SALT',   getenv_docker('V_PI_API_LOGGED_IN_SALT',   '272ade07a3dd782a15b4b4f5360e827049c18f46') );
+define( 'NONCE_SALT',       getenv_docker('V_PI_API_NONCE_SALT',       '55063a40badf9fb6237a5db69ed35f0953f3cafb') );
 // (See also https://XOm_aPI.stackexchange.com/a/152905/199287)
 
 /**#@-*/
@@ -91,7 +91,7 @@ define( 'NONCE_SALT',       getenv_docker('XOM_API_NONCE_SALT',       '55063a40b
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = getenv_docker('XOM_API_TABLE_PREFIX', 'wp_');
+$table_prefix = getenv_docker('V_PI_API_TABLE_PREFIX', 'wp_');
 
 /**
  * For developers: XOm_API debugging mode.
@@ -105,7 +105,7 @@ $table_prefix = getenv_docker('XOM_API_TABLE_PREFIX', 'wp_');
  *
  * @link ####
  */
-define( 'XOPI_DEBUG', !!getenv_docker('XOM_API_DEBUG', '') );
+define( 'V_PI_DEBUG', !!getenv_docker('V_PI_API_DEBUG', '') );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
@@ -117,7 +117,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 // (we include this by default because reverse proxying is extremely common in container environments)
 
 /*
-if ($configExtra = getenv_docker('XOM_API_CONFIG_EXTRA', '')) {
+if ($configExtra = getenv_docker('V_PI_API_CONFIG_EXTRA', '')) {
 	eval($configExtra);
 }
 */

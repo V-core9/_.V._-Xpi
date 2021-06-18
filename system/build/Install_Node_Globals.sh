@@ -17,7 +17,7 @@ echo " "
 
 # bash -c \" npm install -g fast-cli open-cli systeminfo node-notifier-cli node-notifier \" 
 
-FILENAME="./system/build/node_globals.Vinf"
+FILENAME="./system/config/NODE.js-Globals.Vinf"
 LINES=$(cat $FILENAME)
 
 for LINE in $LINES; do echo $(npm install -g $LINE); done
