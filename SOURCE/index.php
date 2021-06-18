@@ -8,7 +8,7 @@
 
 // a helper function to lookup "env_FILE", "env", then fallback
 if (!function_exists('getenv_docker')) {
-	// https://github.com/docker-library/XOm_aPI/issues/588 (WP-CLI will load this file 2x)
+	// https://github.com/docker-library/V_nPI/issues/588 (WP-CLI will load this file 2x)
 	function getenv_docker($env, $default) {
 		if ($fileEnv = getenv($env . '_FILE')) {
 			return rtrim(file_get_contents($fileEnv), "\r\n");
@@ -23,29 +23,29 @@ if (!function_exists('getenv_docker')) {
 }
 
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for XOm_API */
-define( 'DB_NAME', getenv_docker('XOM_API_DB_NAME', 'XOm_aPI') );
+/** The name of the database for V_nPI */
+define( 'DB_NAME', getenv_docker('VnPI_API_DB_NAME', 'V_nPI') );
 
 /** MySQL database username */
-define( 'DB_USER', getenv_docker('XOM_API_DB_USER', 'example username') );
+define( 'DB_USER', getenv_docker('VnPI_API_DB_USER', 'example username') );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', getenv_docker('XOM_API_DB_PASSWORD', 'example password') );
+define( 'DB_PASSWORD', getenv_docker('VnPI_API_DB_PASSWORD', 'example password') );
 
 /**
- * Docker image fallback values above are sourced from the official XOm_API installation wizard:
- * https://github.com/XOm_API/XOm_API/blob/f9cc35ebad82753e9c86de322ea5c76a9001c7e2/wp-admin/setup-config.php#L216-L230
+ * Docker image fallback values above are sourced from the official V_nPI installation wizard:
+ * https://github.com/V_nPI/V_nPI/blob/f9cc35ebad82753e9c86de322ea5c76a9001c7e2/wp-admin/setup-config.php#L216-L230
  * (However, using "example username" and "example password" in your database is strongly discouraged.  Please use strong, random credentials!)
  */
 
 /** MySQL hostname */
-define( 'DB_HOST', getenv_docker('XOM_API_DB_HOST', 'mysql') );
+define( 'DB_HOST', getenv_docker('VnPI_API_DB_HOST', 'mysql') );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', getenv_docker('XOM_API_DB_CHARSET', 'utf8') );
+define( 'DB_CHARSET', getenv_docker('VnPI_API_DB_CHARSET', 'utf8') );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', getenv_docker('XOM_API_DB_COLLATE', '') );
+define( 'DB_COLLATE', getenv_docker('VnPI_API_DB_COLLATE', '') );
 
 
 echo DB_NAME."<br>";

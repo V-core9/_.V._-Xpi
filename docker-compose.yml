@@ -1,21 +1,21 @@
 version: "3.6"
 services:
-  xom:
+  v_pi:
     image: php:${PHP_VERSION:-7.4.19-fpm}
-    container_name: ${PROJECT_NAME}_xom
+    container_name: ${PROJECT_NAME}_v_pi
     volumes:
       - ./system/config/php/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./system/config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./PUBLIC:/var/www/html
     environment:
-      - XOM_DB_NAME=${XOM_DB_NAME:-xom_v}
-      - XOM_TABLE_PREFIX=${XOM_TABLE_PREFIX:-xom_}
-      - XOM_DB_HOST=${XOM_DB_HOST:-mysql}
-      - XOM_DB_USER=${XOM_DB_USER:-root}
-      - XOM_DB_PASSWORD=${XOM_DB_PASSWORD:-password}
-    mem_limit: 1024m
-    mem_reservation: 512M
-    cpus: 8
+      - V_PI_DB_NAME=${V_PI_DB_NAME:-v_pi_v}
+      - V_PI_TABLE_PREFIX=${V_PI_TABLE_PREFIX:-v_pi_}
+      - V_PI_DB_HOST=${V_PI_DB_HOST:-mysql}
+      - V_PI_DB_USER=${V_PI_DB_USER:-root}
+      - V_PI_DB_PASSWORD=${V_PI_DB_PASSWORD:-password}
+  #  mem_limit: 1024m
+  #  mem_reservation: 512M
+  #  cpus: 8
     depends_on:
       - mysql
     restart: always
@@ -30,7 +30,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
       - MYSQL_USER=${MYSQL_USER:-root}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-xom_v}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-v_pi_v}
       - UPLOAD_LIMIT=300M
       - MAX_EXECUTION_TIME=9000
       - MEMORY_LIMIT=2048
@@ -43,20 +43,20 @@ services:
   nginx:
     image: nginx:${NGINX_VERSION:-latest}
     container_name: ${PROJECT_NAME}_nginx
-    mem_limit: 1536m
-    mem_reservation: 256M
-    cpus: 2
+  #  mem_limit: 1536m
+  #  mem_reservation: 256M
+  #  cpus: 2
     ports:
-      - 404:80
+      - 4040:80
       - 443:443
     volumes:
       - ${NGINX_CONF_DIR:-./system/config/nginx}:/etc/nginx/conf.d
       - ${NGINX_LOG_DIR:-./system/logs/nginx}:/var/log/nginx
-      - ${XOM_DATA_DIR:-./PUBLIC}:/var/www/html
+      - ${V_PI_DATA_DIR:-./PUBLIC}:/var/www/html
       - ${SSL_CERTS_DIR:-./system/certs}:/etc/letsencrypt
       - ${SSL_CERTS_DATA_DIR:-./system/certs-data}:/data/letsencrypt
     depends_on:
-      - xom
+      - v_pi
     restart: always
 
   phpmyadmin:
@@ -89,7 +89,7 @@ services:
       - CRON_TIME=0 0 * * *
       - MYSQL_NAME=${PROJECT_NAME}_mysql
       - MYSQL_PORT=${MYSQL_PORT}
-      - TIMEOUT=100s
-      - INIT_BACKUP=1
-      - MAX_BACKUPS=15
-      - GZIP_LEVEL=9
+      - TIMEOUT=300s
+      - INIT_BACKUP=0
+      - MAX_BACKUPS=10
+      - GZIP_LEVEL=5
