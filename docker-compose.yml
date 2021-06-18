@@ -8,7 +8,7 @@ services:
       - ./system/config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./PUBLIC:/var/www/html
     environment:
-      - V_PI_DB_NAME=${V_PI_DB_NAME:-v_pi_v}
+      - V_PI_DB_NAME=${V_PI_DB_NAME:-v_pi_db}
       - V_PI_TABLE_PREFIX=${V_PI_TABLE_PREFIX:-v_pi_}
       - V_PI_DB_HOST=${V_PI_DB_HOST:-mysql}
       - V_PI_DB_USER=${V_PI_DB_USER:-root}
@@ -30,7 +30,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
       - MYSQL_USER=${MYSQL_USER:-root}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-v_pi_v}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-v_pi_db}
       - UPLOAD_LIMIT=300M
       - MAX_EXECUTION_TIME=9000
       - MEMORY_LIMIT=2048
@@ -71,25 +71,25 @@ services:
       PMA_HOST: ${PROJECT_NAME}_mysql
       PMA_PORT: ${MYSQL_PORT}
       PMA_ARBITRARY: 1
-      UPLOAD_LIMIT: 300M
+      UPLOAD_LIMIT: 450M
     links:
       - mysql
 
-  mysql-cron-backup:
-    container_name: ${PROJECT_NAME}_bckup
-    image: fradelg/mysql-cron-backup
-    depends_on:
-      - mysql
-    restart: unless-stopped
-    volumes:
-      - ./system/backup:/backup
-    environment:
-      - MYSQL_USER=${MYSQL_USER:-root}
-      - MYSQL_PASS=${MYSQL_ROOT_PASSWORD:-password}
-      - CRON_TIME=0 0 * * *
-      - MYSQL_NAME=${PROJECT_NAME}_mysql
-      - MYSQL_PORT=${MYSQL_PORT}
-      - TIMEOUT=300s
-      - INIT_BACKUP=0
-      - MAX_BACKUPS=10
-      - GZIP_LEVEL=5
+#  mysql-cron-backup:
+#    container_name: ${PROJECT_NAME}_bckup
+#    image: fradelg/mysql-cron-backup
+#    depends_on:
+#      - mysql
+#    restart: unless-stopped
+#    volumes:
+#      - ./system/backup:/backup
+#    environment:
+#      - MYSQL_USER=${MYSQL_USER:-root}
+#      - MYSQL_PASS=${MYSQL_ROOT_PASSWORD:-password}
+#      - CRON_TIME=0 0 * * *
+#      - MYSQL_NAME=${PROJECT_NAME}_mysql
+#      - MYSQL_PORT=${MYSQL_PORT}
+#      - TIMEOUT=300s
+#      - INIT_BACKUP=0
+#      - MAX_BACKUPS=10
+#      - GZIP_LEVEL=5
