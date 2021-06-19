@@ -156,3 +156,5 @@ vendor/*
 ./vendor
 ./vendor/*
 ./vendor/*
+.env
+
