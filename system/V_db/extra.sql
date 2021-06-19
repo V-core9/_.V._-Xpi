@@ -1,7 +1,4 @@
 
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `api_keys`
@@ -25,9 +22,6 @@ ALTER TABLE `user_scripts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Script_URL` (`slug`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
 --
 -- AUTO_INCREMENT for table `api_keys`
